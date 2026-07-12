@@ -247,8 +247,7 @@ function SectionHeader({ eyebrow, title, link }: { eyebrow: string; title: strin
         <h2 className="mt-2 font-display text-3xl md:text-4xl">{title}</h2>
       </div>
       {link && (
-        // @ts-expect-error dynamic params
-        <Link to={link.to} params={link.params} className="hidden md:inline text-sm underline underline-offset-4">
+        <Link to={link.to as "/$category"} params={link.params as { category: string }} className="hidden md:inline text-sm underline underline-offset-4">
           {link.label}
         </Link>
       )}
