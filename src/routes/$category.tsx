@@ -28,7 +28,8 @@ export const Route = createFileRoute("/$category")({
 const SORTS = ["Featured", "Price: Low to High", "Price: High to Low", "New Arrivals"] as const;
 
 function CategoryPage() {
-  const { cat } = Route.useLoaderData();
+  const { category } = Route.useParams();
+  const cat = CATEGORIES.find((c) => c.slug === category)!;
   const slug = cat.slug as CategorySlug;
   const products = getByCategory(slug);
 
