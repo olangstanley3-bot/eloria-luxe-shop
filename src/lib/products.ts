@@ -1,14 +1,23 @@
-import curtain1 from "@/assets/p-curtain-1.jpg";
-import curtain2 from "@/assets/p-curtain-2.jpg";
 import bag1 from "@/assets/p-bag-1.jpg";
 import bag2 from "@/assets/p-bag-2.jpg";
 import shoe1 from "@/assets/p-shoe-1.jpg";
 import shoe2 from "@/assets/p-shoe-2.jpg";
-import catCurtains from "@/assets/cat-curtains.jpg";
 import catHandbags from "@/assets/cat-handbags.jpg";
 import catShoes from "@/assets/cat-shoes.jpg";
 
-export type CategorySlug = "curtains" | "handbags" | "shoes";
+// Real product photos (uploaded)
+import curtainBlue from "@/assets/uploads/IMG-20260713-WA0103.jpg.asset.json";
+import curtainMixed from "@/assets/uploads/IMG-20260713-WA0105.jpg.asset.json";
+import curtainGreySheer from "@/assets/uploads/IMG-20260713-WA0107.jpg.asset.json";
+import curtainKids from "@/assets/uploads/IMG-20260713-WA0119.jpg.asset.json";
+import beddingRedWhite from "@/assets/uploads/IMG-20260713-WA0108.jpg.asset.json";
+import beddingNavyStars from "@/assets/uploads/IMG-20260713-WA0110.jpg.asset.json";
+import beddingNavyLux from "@/assets/uploads/IMG-20260713-WA0115.jpg.asset.json";
+import beddingPurple from "@/assets/uploads/IMG-20260713-WA0120.jpg.asset.json";
+import beddingCream from "@/assets/uploads/IMG-20260713-WA0121.jpg.asset.json";
+import beddingTealThrow from "@/assets/uploads/IMG-20260713-WA0123.jpg.asset.json";
+
+export type CategorySlug = "curtains" | "bedding" | "handbags" | "shoes";
 
 export type Product = {
   id: string;
@@ -40,16 +49,30 @@ export const CATEGORIES: {
     slug: "curtains",
     name: "Curtains",
     tagline: "Draperies that transform every room",
-    image: catCurtains,
+    image: curtainMixed.url,
     collections: [
       "Luxury Curtains",
       "Sheer Curtains",
       "Blackout Curtains",
       "Living Room",
       "Bedroom",
+      "Kids Room",
       "Modern",
       "Classic",
-      "Minimalist",
+    ],
+  },
+  {
+    slug: "bedding",
+    name: "Bedding & Home Textiles",
+    tagline: "Duvets, throws & bedding sets for restful nights",
+    image: beddingNavyLux.url,
+    collections: [
+      "Duvet Sets",
+      "Comforters",
+      "Throws & Blankets",
+      "Bed Runners",
+      "Kids Bedding",
+      "Luxury",
     ],
   },
   {
@@ -89,59 +112,141 @@ export const CATEGORIES: {
 const p = (o: Product): Product => o;
 
 export const PRODUCTS: Product[] = [
+  // ===== CURTAINS =====
   p({
-    id: "sheer-ivory-drape",
-    name: "Ivory Sheer Drape",
-    category: "curtains",
-    collection: "Sheer Curtains",
-    price: 4500, originalPrice: 6000,
-    image: curtain1, gallery: [curtain1, curtain2],
-    colors: ["Ivory", "Champagne", "Blush"],
-    sizes: ["140x240", "200x260", "300x270"],
-    description: "Whisper-light sheer panels that filter morning sun into a soft, editorial glow.",
-    features: ["100% high-twist polyester voile", "Rod pocket header", "Machine washable"],
-    tag: "Bestseller", rating: 4.9, reviews: 214, stock: 42,
-  }),
-  p({
-    id: "velvet-blackout-noir",
-    name: "Noir Velvet Blackout",
+    id: "royal-blue-grommet-curtain",
+    name: "Royal Blue Grommet Curtain",
     category: "curtains",
     collection: "Blackout Curtains",
-    price: 8900, originalPrice: 11500,
-    image: curtain2, gallery: [curtain2, curtain1],
-    colors: ["Charcoal", "Deep Emerald", "Bordeaux"],
-    sizes: ["200x260", "300x270"],
-    description: "Dense velvet weave that blocks 99% of light — designed for cinematic bedrooms and lounges.",
-    features: ["Triple-weave blackout lining", "Thermal insulating", "Grommet top"],
-    tag: "New", rating: 4.8, reviews: 138, stock: 18,
+    price: 3800, originalPrice: 5200,
+    image: curtainBlue.url, gallery: [curtainBlue.url, curtainMixed.url],
+    colors: ["Royal Blue", "Navy", "Teal"],
+    sizes: ["150x230", "200x260", "300x270"],
+    description: "Rich royal blue grommet-top curtains — heavy weave that filters harsh light and adds warmth to any room.",
+    features: ["Heavy blackout weave", "Silver grommet header", "Machine washable"],
+    tag: "Bestseller", rating: 4.8, reviews: 142, stock: 36,
   }),
   p({
-    id: "linen-cloud-panel",
-    name: "Linen Cloud Panel",
-    category: "curtains",
-    collection: "Living Room",
-    price: 6200,
-    image: curtain1, gallery: [curtain1, curtain2],
-    colors: ["Sand", "Ivory", "Stone"],
-    sizes: ["140x240", "200x260"],
-    description: "Belgian-style linen with a soft, lived-in fall.",
-    features: ["Pure linen blend", "OEKO-TEX certified", "Weighted hem"],
-    rating: 4.7, reviews: 92, stock: 26,
-  }),
-  p({
-    id: "champagne-silk-drape",
-    name: "Champagne Silk Drape",
+    id: "atelier-jacquard-drapes",
+    name: "Atelier Jacquard Drapes",
     category: "curtains",
     collection: "Luxury Curtains",
-    price: 12400, originalPrice: 15800,
-    image: curtain2, gallery: [curtain2, curtain1],
-    colors: ["Champagne", "Ivory"],
+    price: 8500, originalPrice: 10800,
+    image: curtainMixed.url, gallery: [curtainMixed.url, curtainBlue.url],
+    colors: ["Silver", "Teal", "Cream", "Yellow", "Grey"],
     sizes: ["200x260", "300x270"],
-    description: "Silk-blend drapery with a subtle sheen and museum-grade tailoring.",
-    features: ["Silk-viscose blend", "Hand-finished hem", "Interlined for weight"],
-    tag: "Limited", rating: 5, reviews: 47, stock: 8,
+    description: "Jacquard patterned drapes styled with tasseled tie-backs — the centerpiece of any living room.",
+    features: ["Jacquard weave", "Includes tie-backs", "Pinch-pleat header"],
+    tag: "New", rating: 4.9, reviews: 88, stock: 22,
+  }),
+  p({
+    id: "sheer-white-panel",
+    name: "Sheer White Panel with Accents",
+    category: "curtains",
+    collection: "Sheer Curtains",
+    price: 3200,
+    image: curtainGreySheer.url, gallery: [curtainGreySheer.url, curtainMixed.url],
+    colors: ["Grey", "Mustard", "White", "Blush"],
+    sizes: ["140x240", "200x260"],
+    description: "Layered sheer + solid combo — soft light, quiet elegance. Perfect for bedrooms and dining rooms.",
+    features: ["Voile sheer overlay", "Rod pocket header", "Sold as 4-panel set"],
+    rating: 4.7, reviews: 64, stock: 41,
+  }),
+  p({
+    id: "kids-cars-curtain",
+    name: "Kids Racing Cars Curtain",
+    category: "curtains",
+    collection: "Kids Room",
+    price: 2900, originalPrice: 3800,
+    image: curtainKids.url, gallery: [curtainKids.url],
+    colors: ["Blue Multi"],
+    sizes: ["150x220", "200x230"],
+    description: "Bright printed curtain for kids' bedrooms — playful racing cars motif on a fresh blue base.",
+    features: ["Kid-safe fabric", "Rod pocket header", "Includes tie-backs"],
+    tag: "Sale", rating: 4.8, reviews: 51, stock: 30,
   }),
 
+  // ===== BEDDING =====
+  p({
+    id: "navy-luxe-comforter-set",
+    name: "Navy Luxe 6pc Comforter Set",
+    category: "bedding",
+    collection: "Luxury",
+    price: 9800, originalPrice: 12500,
+    image: beddingNavyLux.url, gallery: [beddingNavyLux.url, beddingPurple.url],
+    colors: ["Navy", "Purple", "Cream"],
+    sizes: ["5x6", "6x6", "6x7"],
+    description: "Damask-embossed velvet-touch comforter with matching shams and cushions — hotel-grade luxury.",
+    features: ["6-piece set", "Velvet-touch finish", "Reversible grey underside"],
+    tag: "Bestseller", rating: 4.9, reviews: 176, stock: 18,
+  }),
+  p({
+    id: "royal-purple-comforter-set",
+    name: "Royal Purple 6pc Comforter Set",
+    category: "bedding",
+    collection: "Luxury",
+    price: 9800, originalPrice: 12500,
+    image: beddingPurple.url, gallery: [beddingPurple.url, beddingNavyLux.url],
+    colors: ["Purple", "Navy", "Cream"],
+    sizes: ["5x6", "6x6", "6x7"],
+    description: "Rich royal purple damask comforter set — a bold, romantic statement for master bedrooms.",
+    features: ["6-piece set", "Velvet-touch finish", "Reversible grey underside"],
+    tag: "New", rating: 4.9, reviews: 92, stock: 15,
+  }),
+  p({
+    id: "cream-damask-comforter-set",
+    name: "Cream Damask 6pc Set",
+    category: "bedding",
+    collection: "Luxury",
+    price: 9800,
+    image: beddingCream.url, gallery: [beddingCream.url, beddingNavyLux.url],
+    colors: ["Cream", "Ivory"],
+    sizes: ["5x6", "6x6", "6x7"],
+    description: "Soft cream damask comforter with grey reverse — timeless and warm.",
+    features: ["6-piece set", "Velvet-touch finish", "Machine washable cold"],
+    rating: 4.8, reviews: 74, stock: 20,
+  }),
+  p({
+    id: "red-white-bed-runner",
+    name: "Red & White Bed Runner Set",
+    category: "bedding",
+    collection: "Bed Runners",
+    price: 4200,
+    image: beddingRedWhite.url, gallery: [beddingRedWhite.url],
+    colors: ["Red/White"],
+    sizes: ["5x6", "6x6"],
+    description: "Crisp white sateen bedding paired with a red runner and matching cushion covers.",
+    features: ["Sateen finish", "Runner + 2 cushion covers", "Stripe-embossed duvet"],
+    tag: "Sale", rating: 4.7, reviews: 58, stock: 25,
+  }),
+  p({
+    id: "navy-stars-duvet",
+    name: "Navy Stars Fleece Duvet",
+    category: "bedding",
+    collection: "Kids Bedding",
+    price: 3600,
+    image: beddingNavyStars.url, gallery: [beddingNavyStars.url],
+    colors: ["Navy Stars"],
+    sizes: ["4x6", "5x6", "6x6"],
+    description: "Warm printed fleece duvet — cosy for cold nights and playful for kids' rooms.",
+    features: ["Warm fleece", "Reversible design", "Machine washable"],
+    rating: 4.7, reviews: 41, stock: 34,
+  }),
+  p({
+    id: "teal-ribbed-throw",
+    name: "Teal Ribbed Fleece Throw",
+    category: "bedding",
+    collection: "Throws & Blankets",
+    price: 2400, originalPrice: 3200,
+    image: beddingTealThrow.url, gallery: [beddingTealThrow.url],
+    colors: ["Teal", "Grey", "Wine"],
+    sizes: ["Single", "Double"],
+    description: "Chunky ribbed fleece throw — the softest way to end a long day.",
+    features: ["Ultra-soft fleece", "Reversible sherpa lining", "Anti-pill"],
+    tag: "New", rating: 4.9, reviews: 112, stock: 44,
+  }),
+
+  // ===== HANDBAGS ===== (placeholders until real photos arrive)
   p({
     id: "cream-carry-tote",
     name: "Cream Carry Tote",
@@ -151,7 +256,7 @@ export const PRODUCTS: Product[] = [
     image: bag1, gallery: [bag1, bag2],
     colors: ["Cream", "Beige", "Black"],
     sizes: ["One Size"],
-    description: "A structured everyday tote in supple grained leather — quietly gold, endlessly wearable.",
+    description: "A structured everyday tote in supple grained leather.",
     features: ["Full-grain leather", "Suede-lined interior", "Gold-tone hardware"],
     tag: "Bestseller", rating: 4.9, reviews: 312, stock: 21,
   }),
@@ -164,7 +269,7 @@ export const PRODUCTS: Product[] = [
     image: bag2, gallery: [bag2, bag1],
     colors: ["Black", "Chocolate"],
     sizes: ["One Size"],
-    description: "Sleek chain-strap crossbody with an elongated silhouette — for evenings that need presence.",
+    description: "Sleek chain-strap crossbody with an elongated silhouette.",
     features: ["Smooth calfskin", "Chain + leather strap", "Magnetic closure"],
     tag: "New", rating: 4.8, reviews: 176, stock: 14,
   }),
@@ -181,20 +286,8 @@ export const PRODUCTS: Product[] = [
     features: ["Satin exterior", "Removable chain", "Interior card slot"],
     tag: "Sale", rating: 4.7, reviews: 84, stock: 33,
   }),
-  p({
-    id: "atelier-office-tote",
-    name: "Atelier Office Tote",
-    category: "handbags",
-    collection: "Office",
-    price: 8900,
-    image: bag2, gallery: [bag2, bag1],
-    colors: ["Black", "Cream", "Tan"],
-    sizes: ["One Size"],
-    description: "Fits a 14\" laptop and a very full agenda.",
-    features: ["Padded laptop sleeve", "Zip closure", "Reinforced base"],
-    rating: 4.9, reviews: 201, stock: 19,
-  }),
 
+  // ===== SHOES ===== (placeholders until real photos arrive)
   p({
     id: "nude-pointed-pump",
     name: "Nude Pointed Pump",
@@ -204,7 +297,7 @@ export const PRODUCTS: Product[] = [
     image: shoe1, gallery: [shoe1, shoe2],
     colors: ["Nude", "Black", "Blush"],
     sizes: ["36", "37", "38", "39", "40", "41"],
-    description: "The 85mm pump, refined — with a whisper-thin stiletto and an almond-pointed toe.",
+    description: "The 85mm pump, refined.",
     features: ["Napa leather upper", "Leather-wrapped heel", "Cushioned insole"],
     tag: "Bestseller", rating: 4.8, reviews: 289, stock: 27,
   }),
@@ -217,7 +310,7 @@ export const PRODUCTS: Product[] = [
     image: shoe2, gallery: [shoe2, shoe1],
     colors: ["White", "Cream"],
     sizes: ["36", "37", "38", "39", "40"],
-    description: "Minimal, quietly cushioned, and unfailingly polished — for weekends and everything after.",
+    description: "Minimal, quietly cushioned, and unfailingly polished.",
     features: ["Full-grain leather", "Memory-foam insole", "Rubber cup sole"],
     tag: "New", rating: 4.9, reviews: 356, stock: 41,
   }),
@@ -230,22 +323,9 @@ export const PRODUCTS: Product[] = [
     image: shoe1, gallery: [shoe1, shoe2],
     colors: ["Champagne", "Nude", "Silver"],
     sizes: ["36", "37", "38", "39", "40"],
-    description: "Barely-there straps on a slender 70mm heel — designed to disappear into the moment.",
+    description: "Barely-there straps on a slender 70mm heel.",
     features: ["Metallic leather", "Adjustable ankle strap", "Anti-slip sole"],
     rating: 4.7, reviews: 128, stock: 22,
-  }),
-  p({
-    id: "ivory-bridal-heel",
-    name: "Ivory Bridal Heel",
-    category: "shoes",
-    collection: "Wedding",
-    price: 7200, originalPrice: 8900,
-    image: shoe1, gallery: [shoe1, shoe2],
-    colors: ["Ivory", "Blush"],
-    sizes: ["36", "37", "38", "39", "40", "41"],
-    description: "The heel you'll walk down the aisle in — and keep wearing.",
-    features: ["Silk satin upper", "Crystal detail", "Extra-padded insole"],
-    tag: "Limited", rating: 5, reviews: 63, stock: 11,
   }),
 ];
 
@@ -267,7 +347,7 @@ export function formatKES(n: number) {
   return `KSh ${n.toLocaleString("en-KE")}`;
 }
 
-export const WHATSAPP_NUMBER = "254700000000"; // placeholder — update in one place
+export const WHATSAPP_NUMBER = "254700000000";
 
 export function whatsappUrl(message: string) {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
