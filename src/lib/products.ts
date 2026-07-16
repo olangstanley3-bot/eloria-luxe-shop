@@ -16,6 +16,16 @@ import beddingNavyLux from "@/assets/uploads/IMG-20260713-WA0115.jpg.asset.json"
 import beddingPurple from "@/assets/uploads/IMG-20260713-WA0120.jpg.asset.json";
 import beddingCream from "@/assets/uploads/IMG-20260713-WA0121.jpg.asset.json";
 import beddingTealThrow from "@/assets/uploads/IMG-20260713-WA0123.jpg.asset.json";
+import beddingBrownCheck from "@/assets/uploads/IMG-20260713-WA0136.jpg.asset.json";
+import towelsStack from "@/assets/uploads/IMG-20260713-WA0092.jpg.asset.json";
+import fluffyThrows from "@/assets/uploads/IMG-20260713-WA0099.jpg.asset.json";
+import beddingPinkGeo from "@/assets/uploads/IMG-20260713-WA0137.jpg.asset.json";
+import curtainPinkCanopy from "@/assets/uploads/IMG-20260713-WA0098.jpg.asset.json";
+import curtainNavySolid from "@/assets/uploads/IMG-20260713-WA0102.jpg.asset.json";
+import curtainPleatedRange from "@/assets/uploads/IMG-20260713-WA0104.jpg.asset.json";
+import curtainNavyYellow from "@/assets/uploads/IMG-20260713-WA0106.jpg.asset.json";
+import beddingWhiteRibbed from "@/assets/uploads/IMG-20260713-WA0109.jpg_2.jpg.asset.json";
+import beddingWhiteStripe from "@/assets/uploads/IMG-20260713-WA0111.jpg.asset.json";
 
 export type CategorySlug = "curtains" | "bedding" | "handbags" | "shoes";
 
@@ -73,6 +83,8 @@ export const CATEGORIES: {
       "Bed Runners",
       "Kids Bedding",
       "Luxury",
+      "Towels",
+      "Cotton Sheets",
     ],
   },
   {
@@ -244,6 +256,140 @@ export const PRODUCTS: Product[] = [
     description: "Chunky ribbed fleece throw — the softest way to end a long day.",
     features: ["Ultra-soft fleece", "Reversible sherpa lining", "Anti-pill"],
     tag: "New", rating: 4.9, reviews: 112, stock: 44,
+  }),
+
+  // ===== More curtains =====
+  p({
+    id: "navy-solid-blackout",
+    name: "Navy Solid Blackout Curtain",
+    category: "curtains",
+    collection: "Blackout Curtains",
+    price: 3500,
+    image: curtainNavySolid.url, gallery: [curtainNavySolid.url, curtainBlue.url],
+    colors: ["Navy", "Black", "Grey", "Wine"],
+    sizes: ["150x230", "200x260", "300x270"],
+    description: "Deep navy blackout curtain with silver grommets — clean, modern, and light-blocking.",
+    features: ["Blackout weave", "Silver grommet header", "Sold per panel"],
+    tag: "Bestseller", rating: 4.9, reviews: 210, stock: 48,
+  }),
+  p({
+    id: "satin-pleated-drapes",
+    name: "Satin Pleated Drapes",
+    category: "curtains",
+    collection: "Luxury Curtains",
+    price: 7200, originalPrice: 9000,
+    image: curtainPleatedRange.url, gallery: [curtainPleatedRange.url, curtainMixed.url],
+    colors: ["Champagne", "Navy", "Charcoal", "Gold", "Silver"],
+    sizes: ["200x260", "300x270"],
+    description: "Silky satin pleated drapes with tasseled tie-backs — available in 8 elegant shades.",
+    features: ["Satin sheen", "Pinch pleat header", "Includes tasseled tie-backs"],
+    tag: "New", rating: 4.9, reviews: 96, stock: 26,
+  }),
+  p({
+    id: "navy-yellow-statement",
+    name: "Navy & Yellow Statement Curtain",
+    category: "curtains",
+    collection: "Living Room",
+    price: 4200,
+    image: curtainNavyYellow.url, gallery: [curtainNavyYellow.url],
+    colors: ["Navy/Yellow"],
+    sizes: ["200x260"],
+    description: "Two-tone navy and mustard curtain — bold contrast to elevate any living space.",
+    features: ["Heavy fabric", "Includes accent cushions", "Grommet header"],
+    rating: 4.7, reviews: 38, stock: 18,
+  }),
+  p({
+    id: "pink-canopy-bed-curtain",
+    name: "Pink Canopy Bed Curtain Set",
+    category: "curtains",
+    collection: "Bedroom",
+    price: 6800, originalPrice: 8500,
+    image: curtainPinkCanopy.url, gallery: [curtainPinkCanopy.url],
+    colors: ["Peach Pink", "White", "Lilac"],
+    sizes: ["5x6", "6x6"],
+    description: "Romantic canopy bed curtain with lace trim and mosquito net — dreamy princess bedroom look.",
+    features: ["Includes 4 posts fabric", "Lace trim", "Doubles as mosquito net"],
+    tag: "New", rating: 4.8, reviews: 47, stock: 12,
+  }),
+
+  // ===== More bedding =====
+  p({
+    id: "brown-check-cotton-set",
+    name: "Brown Check 6pc Cotton Set",
+    category: "bedding",
+    collection: "Cotton Sheets",
+    price: 4800, originalPrice: 6200,
+    image: beddingBrownCheck.url, gallery: [beddingBrownCheck.url],
+    colors: ["Brown/Cream"],
+    sizes: ["5x6", "6x6", "6x7"],
+    description: "Crisp cotton bedding in a warm brown & cream check — includes flat sheet, fitted sheet, duvet cover and pillowcases.",
+    features: ["100% cotton", "6-piece set", "Machine washable"],
+    tag: "Sale", rating: 4.8, reviews: 63, stock: 28,
+  }),
+  p({
+    id: "pink-geo-cotton-set",
+    name: "Blush Geometric Cotton Set",
+    category: "bedding",
+    collection: "Cotton Sheets",
+    price: 4800,
+    image: beddingPinkGeo.url, gallery: [beddingPinkGeo.url],
+    colors: ["Blush/Cream"],
+    sizes: ["5x6", "6x6", "6x7"],
+    description: "Soft cotton bedding with playful pink and tan geometric print — light and modern.",
+    features: ["100% cotton", "6-piece set", "Fade-resistant print"],
+    rating: 4.7, reviews: 42, stock: 24,
+  }),
+  p({
+    id: "white-ribbed-fleece-set",
+    name: "White Ribbed Fleece Duvet Set",
+    category: "bedding",
+    collection: "Duvet Sets",
+    price: 8200, originalPrice: 10500,
+    image: beddingWhiteRibbed.url, gallery: [beddingWhiteRibbed.url],
+    colors: ["White", "Grey", "Beige"],
+    sizes: ["5x6", "6x6", "6x7"],
+    description: "Plush ribbed fleece duvet cover set — hotel-soft, exceptionally warm.",
+    features: ["Ribbed fleece", "6-piece set", "Reversible"],
+    tag: "Bestseller", rating: 4.9, reviews: 128, stock: 22,
+  }),
+  p({
+    id: "hotel-white-stripe-set",
+    name: "Hotel White Stripe 6pc Set",
+    category: "bedding",
+    collection: "Luxury",
+    price: 7500,
+    image: beddingWhiteStripe.url, gallery: [beddingWhiteStripe.url],
+    colors: ["White"],
+    sizes: ["5x6", "6x6", "6x7"],
+    description: "Classic hotel-grade white satin-stripe cotton bedding — timeless and effortlessly luxurious.",
+    features: ["Sateen stripe cotton", "300 thread count", "6-piece set"],
+    tag: "New", rating: 4.9, reviews: 154, stock: 30,
+  }),
+  p({
+    id: "ribbed-fleece-throw-multi",
+    name: "Ribbed Fleece Throw",
+    category: "bedding",
+    collection: "Throws & Blankets",
+    price: 2200, originalPrice: 2900,
+    image: fluffyThrows.url, gallery: [fluffyThrows.url, beddingTealThrow.url],
+    colors: ["Yellow", "Red", "Navy", "Sky Blue", "Grey", "Brown", "Pink", "Wine", "Beige"],
+    sizes: ["Single", "Double"],
+    description: "Ultra-soft ribbed fleece throw — available in 9 colors. Great gift.",
+    features: ["Chunky ribbed fleece", "Anti-pill", "Reversible"],
+    tag: "Bestseller", rating: 4.9, reviews: 231, stock: 60,
+  }),
+  p({
+    id: "cotton-bath-towels",
+    name: "Egyptian Cotton Bath Towel",
+    category: "bedding",
+    collection: "Towels",
+    price: 1200,
+    image: towelsStack.url, gallery: [towelsStack.url],
+    colors: ["Teal", "Mint", "Red", "Purple", "Blue", "Grey", "Green", "Pink", "Brown"],
+    sizes: ["70x140"],
+    description: "Absorbent Egyptian cotton bath towel — thick, plush, quick-drying. 9 colors.",
+    features: ["100% Egyptian cotton", "550 GSM", "Fade-resistant dye"],
+    rating: 4.8, reviews: 189, stock: 120,
   }),
 
   // ===== HANDBAGS ===== (placeholders until real photos arrive)
