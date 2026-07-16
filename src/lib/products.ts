@@ -83,6 +83,8 @@ export const CATEGORIES: {
       "Bed Runners",
       "Kids Bedding",
       "Luxury",
+      "Towels",
+      "Cotton Sheets",
     ],
   },
   {
