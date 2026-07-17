@@ -493,7 +493,12 @@ export function formatKES(n: number) {
   return `KSh ${n.toLocaleString("en-KE")}`;
 }
 
-export const WHATSAPP_NUMBER = "254700000000";
+export const WHATSAPP_NUMBER = "254742461744";
+export const PHONE_NUMBER = "+254742461744";
+export const PHONE_DISPLAY = "+254 742 461 744";
+export const INSTAGRAM_URL = "https://www.instagram.com/eloriastore1";
+export const FACEBOOK_URL = "https://www.facebook.com/eloriastore1";
+export const EMAIL_ADDRESS = "hello@eloriastore.co.ke";
 
 export function whatsappUrl(message: string) {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
