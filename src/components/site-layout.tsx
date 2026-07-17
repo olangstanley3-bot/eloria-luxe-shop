@@ -118,8 +118,13 @@ export function SiteFooter() {
             Premium curtains, elegant handbags and fashionable ladies' shoes — thoughtfully curated, affordably priced.
           </p>
           <div className="mt-5 flex items-center gap-3">
-            <a href="#" aria-label="Instagram" className="p-2 rounded-full border border-border hover:bg-accent/20 transition"><Instagram className="h-4 w-4" /></a>
-            <a href="#" aria-label="Facebook" className="p-2 rounded-full border border-border hover:bg-accent/20 transition"><Facebook className="h-4 w-4" /></a>
+            <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" aria-label="Instagram" className="p-2 rounded-full border border-border hover:bg-accent/20 transition"><Instagram className="h-4 w-4" /></a>
+            <a href={FACEBOOK_URL} target="_blank" rel="noreferrer" aria-label="Facebook" className="p-2 rounded-full border border-border hover:bg-accent/20 transition"><Facebook className="h-4 w-4" /></a>
+            <a href={whatsappUrl("Hi Eloria!")} target="_blank" rel="noreferrer" aria-label="WhatsApp" className="p-2 rounded-full border border-border hover:bg-accent/20 transition"><MessageCircle className="h-4 w-4" /></a>
+          </div>
+          <div className="mt-4 space-y-1 text-sm text-foreground/80">
+            <a href={`tel:${PHONE_NUMBER}`} className="block hover:text-foreground">{PHONE_DISPLAY}</a>
+            <a href={whatsappUrl("Hi Eloria!")} target="_blank" rel="noreferrer" className="block hover:text-foreground">WhatsApp: {PHONE_DISPLAY}</a>
           </div>
         </div>
         <div>
