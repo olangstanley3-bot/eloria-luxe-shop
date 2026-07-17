@@ -26,6 +26,16 @@ import curtainPleatedRange from "@/assets/uploads/IMG-20260713-WA0104.jpg.asset.
 import curtainNavyYellow from "@/assets/uploads/IMG-20260713-WA0106.jpg.asset.json";
 import beddingWhiteRibbed from "@/assets/uploads/IMG-20260713-WA0109.jpg_2.jpg.asset.json";
 import beddingWhiteStripe from "@/assets/uploads/IMG-20260713-WA0111.jpg.asset.json";
+import towelsStripe from "@/assets/uploads/IMG-20260713-WA0093.jpg.asset.json";
+import mattressBeige from "@/assets/uploads/IMG-20260713-WA0094.jpg.asset.json";
+import mattressBlueWater from "@/assets/uploads/IMG-20260713-WA0095.jpg.asset.json";
+import mattressGrey from "@/assets/uploads/IMG-20260713-WA0096.jpg.asset.json";
+import mattressNavy from "@/assets/uploads/IMG-20260713-WA0097.jpg.asset.json";
+import cushionCovers from "@/assets/uploads/IMG-20260713-WA0100.jpg.asset.json";
+import curtainOrange from "@/assets/uploads/IMG-20260713-WA0101.jpg.asset.json";
+import beddingWhiteTassel from "@/assets/uploads/IMG-20260713-WA0112.jpg.asset.json";
+import curtainKidsMickey from "@/assets/uploads/IMG-20260713-WA0117.jpg.asset.json";
+import beddingMonoGeo from "@/assets/uploads/IMG-20260713-WA0126.jpg.asset.json";
 
 export type CategorySlug = "curtains" | "bedding" | "handbags" | "shoes";
 
