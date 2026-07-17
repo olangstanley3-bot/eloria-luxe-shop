@@ -26,6 +26,16 @@ import curtainPleatedRange from "@/assets/uploads/IMG-20260713-WA0104.jpg.asset.
 import curtainNavyYellow from "@/assets/uploads/IMG-20260713-WA0106.jpg.asset.json";
 import beddingWhiteRibbed from "@/assets/uploads/IMG-20260713-WA0109.jpg_2.jpg.asset.json";
 import beddingWhiteStripe from "@/assets/uploads/IMG-20260713-WA0111.jpg.asset.json";
+import towelsStripe from "@/assets/uploads/IMG-20260713-WA0093.jpg.asset.json";
+import mattressBeige from "@/assets/uploads/IMG-20260713-WA0094.jpg.asset.json";
+import mattressBlueWater from "@/assets/uploads/IMG-20260713-WA0095.jpg.asset.json";
+import mattressGrey from "@/assets/uploads/IMG-20260713-WA0096.jpg.asset.json";
+import mattressNavy from "@/assets/uploads/IMG-20260713-WA0097.jpg.asset.json";
+import cushionCovers from "@/assets/uploads/IMG-20260713-WA0100.jpg.asset.json";
+import curtainOrange from "@/assets/uploads/IMG-20260713-WA0101.jpg.asset.json";
+import beddingWhiteTassel from "@/assets/uploads/IMG-20260713-WA0112.jpg.asset.json";
+import curtainKidsMickey from "@/assets/uploads/IMG-20260713-WA0117.jpg.asset.json";
+import beddingMonoGeo from "@/assets/uploads/IMG-20260713-WA0126.jpg.asset.json";
 
 export type CategorySlug = "curtains" | "bedding" | "handbags" | "shoes";
 
@@ -85,6 +95,8 @@ export const CATEGORIES: {
       "Luxury",
       "Towels",
       "Cotton Sheets",
+      "Mattress Protectors",
+      "Cushion Covers",
     ],
   },
   {
@@ -392,6 +404,138 @@ export const PRODUCTS: Product[] = [
     rating: 4.8, reviews: 189, stock: 120,
   }),
 
+  // ===== More curtains & bedding (new batch) =====
+  p({
+    id: "orange-grommet-curtain",
+    name: "Sunset Orange Grommet Curtain",
+    category: "curtains",
+    collection: "Living Room",
+    price: 3400, originalPrice: 4200,
+    image: curtainOrange.url, gallery: [curtainOrange.url],
+    colors: ["Orange", "Terracotta", "Mustard"],
+    sizes: ["150x230", "200x260"],
+    description: "Warm sunset-orange grommet curtain — instantly lifts a neutral living room.",
+    features: ["Silky drape", "Silver grommet header", "Sold per panel"],
+    tag: "Sale", rating: 4.7, reviews: 34, stock: 26,
+  }),
+  p({
+    id: "kids-mickey-curtain",
+    name: "Kids Mickey & Minnie Curtain",
+    category: "curtains",
+    collection: "Kids Room",
+    price: 3100, originalPrice: 3900,
+    image: curtainKidsMickey.url, gallery: [curtainKidsMickey.url],
+    colors: ["Sky Blue"],
+    sizes: ["150x220", "200x230"],
+    description: "Cheerful sky-blue curtain with printed characters and matching sheer — perfect for kids' rooms.",
+    features: ["Blackout + sheer combo", "Rod pocket header", "Includes tie-backs"],
+    rating: 4.8, reviews: 44, stock: 22,
+  }),
+  p({
+    id: "white-tassel-comforter-set",
+    name: "White & Burgundy Tassel Comforter Set",
+    category: "bedding",
+    collection: "Luxury",
+    price: 8900, originalPrice: 11500,
+    image: beddingWhiteTassel.url, gallery: [beddingWhiteTassel.url],
+    colors: ["White/Burgundy"],
+    sizes: ["5x6", "6x6", "6x7"],
+    description: "Crisp white comforter with embroidered diamond motifs and burgundy tassels — modern boho luxury.",
+    features: ["Embroidered detail", "Includes tassel cushion", "6-piece set"],
+    tag: "New", rating: 4.9, reviews: 62, stock: 16,
+  }),
+  p({
+    id: "mono-geo-fleece-comforter",
+    name: "Monochrome Geo Fleece Comforter",
+    category: "bedding",
+    collection: "Comforters",
+    price: 6200, originalPrice: 7800,
+    image: beddingMonoGeo.url, gallery: [beddingMonoGeo.url],
+    colors: ["Black/White/Grey"],
+    sizes: ["5x6", "6x6", "6x7"],
+    description: "Bold monochrome geometric print with plush sherpa fleece reverse — warm, modern, statement bedding.",
+    features: ["Sherpa fleece reverse", "Reversible", "3-piece set"],
+    tag: "Bestseller", rating: 4.8, reviews: 71, stock: 24,
+  }),
+  p({
+    id: "striped-beach-towels",
+    name: "Striped Pool & Beach Towel",
+    category: "bedding",
+    collection: "Towels",
+    price: 1600,
+    image: towelsStripe.url, gallery: [towelsStripe.url, towelsStack.url],
+    colors: ["Multi Stripe"],
+    sizes: ["80x160"],
+    description: "Oversized striped cotton towel — great for pool, beach or gym. Ultra absorbent.",
+    features: ["100% cotton velour", "Oversized", "Fade-resistant"],
+    rating: 4.7, reviews: 58, stock: 80,
+  }),
+  p({
+    id: "beige-quilted-mattress-protector",
+    name: "Beige Quilted Mattress Protector",
+    category: "bedding",
+    collection: "Mattress Protectors",
+    price: 2800, originalPrice: 3600,
+    image: mattressBeige.url, gallery: [mattressBeige.url, mattressGrey.url],
+    colors: ["Beige", "Grey", "White"],
+    sizes: ["5x6", "6x6", "6x7"],
+    description: "Soft quilted mattress protector — extends the life of your mattress and adds cushioned comfort.",
+    features: ["Deep pocket fit", "Anti-dust mite", "Machine washable"],
+    tag: "Sale", rating: 4.7, reviews: 96, stock: 40,
+  }),
+  p({
+    id: "blue-waterproof-mattress-protector",
+    name: "Blue Waterproof Mattress Protector",
+    category: "bedding",
+    collection: "Mattress Protectors",
+    price: 3200,
+    image: mattressBlueWater.url, gallery: [mattressBlueWater.url],
+    colors: ["Sky Blue", "White", "Grey"],
+    sizes: ["5x6", "6x6", "6x7"],
+    description: "100% waterproof yet breathable quilted mattress protector — a must-have for kids' beds.",
+    features: ["Waterproof TPU layer", "Silent — no crinkle", "Fitted skirt"],
+    tag: "Bestseller", rating: 4.9, reviews: 143, stock: 55,
+  }),
+  p({
+    id: "grey-quilted-mattress-protector",
+    name: "Grey Quilted Mattress Protector",
+    category: "bedding",
+    collection: "Mattress Protectors",
+    price: 2900,
+    image: mattressGrey.url, gallery: [mattressGrey.url],
+    colors: ["Grey"],
+    sizes: ["5x6", "6x6", "6x7"],
+    description: "Neutral grey diamond-quilted protector — soft microfiber top with elasticated fit.",
+    features: ["Diamond quilt", "Hypoallergenic fill", "Elasticated fit"],
+    rating: 4.7, reviews: 52, stock: 32,
+  }),
+  p({
+    id: "navy-elegant-mattress-protector",
+    name: "Navy Elegant Mattress Protector Set",
+    category: "bedding",
+    collection: "Mattress Protectors",
+    price: 4200, originalPrice: 5200,
+    image: mattressNavy.url, gallery: [mattressNavy.url],
+    colors: ["Navy", "Burgundy", "Grey"],
+    sizes: ["5x6", "6x6", "6x7"],
+    description: "Rich navy quilted protector with matching pillow protectors — hotel-grade look and feel.",
+    features: ["Includes 2 pillow protectors", "Deep pocket", "Fade-resistant dye"],
+    tag: "New", rating: 4.8, reviews: 47, stock: 26,
+  }),
+  p({
+    id: "fluffy-cushion-covers-9pack",
+    name: "Plush Ribbed Cushion Covers",
+    category: "bedding",
+    collection: "Cushion Covers",
+    price: 1400,
+    image: cushionCovers.url, gallery: [cushionCovers.url],
+    colors: ["Pink", "Brown", "Green", "Orange", "Cream", "Blue", "White", "Grey", "Beige"],
+    sizes: ["45x45", "50x50"],
+    description: "Ultra-soft ribbed faux-fur cushion covers — 9 rich tones to mix and match on any sofa.",
+    features: ["Faux-fur ribbed weave", "Hidden zip closure", "Cover only — insert sold separately"],
+    tag: "Bestseller", rating: 4.9, reviews: 168, stock: 90,
+  }),
+
   // ===== HANDBAGS ===== (placeholders until real photos arrive)
   p({
     id: "cream-carry-tote",
@@ -493,7 +637,12 @@ export function formatKES(n: number) {
   return `KSh ${n.toLocaleString("en-KE")}`;
 }
 
-export const WHATSAPP_NUMBER = "254700000000";
+export const WHATSAPP_NUMBER = "254742461744";
+export const PHONE_NUMBER = "+254742461744";
+export const PHONE_DISPLAY = "+254 742 461 744";
+export const INSTAGRAM_URL = "https://www.instagram.com/eloriastore1";
+export const FACEBOOK_URL = "https://www.facebook.com/eloriastore1";
+export const EMAIL_ADDRESS = "hello@eloriastore.co.ke";
 
 export function whatsappUrl(message: string) {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;

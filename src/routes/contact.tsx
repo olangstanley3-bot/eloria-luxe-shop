@@ -2,7 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Mail, MapPin, Phone, MessageCircle } from "lucide-react";
 import { SiteShell } from "@/components/site-layout";
-import { whatsappUrl } from "@/lib/products";
+import { whatsappUrl, PHONE_NUMBER, PHONE_DISPLAY, EMAIL_ADDRESS, INSTAGRAM_URL } from "@/lib/products";
+import { Instagram } from "lucide-react";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -26,10 +27,11 @@ function ContactPage() {
           <div>
             <div className="space-y-6">
               {[
-                { icon: MessageCircle, label: "WhatsApp", value: "+254 700 000 000", href: whatsappUrl("Hi Eloria!") },
-                { icon: Phone, label: "Phone", value: "+254 700 000 000", href: "tel:+254700000000" },
-                { icon: Mail, label: "Email", value: "hello@eloriastore.co.ke", href: "mailto:hello@eloriastore.co.ke" },
-                { icon: MapPin, label: "Atelier", value: "Westlands, Nairobi, Kenya" },
+                { icon: MessageCircle, label: "WhatsApp", value: PHONE_DISPLAY, href: whatsappUrl("Hi Eloria!") },
+                { icon: Phone, label: "Call us", value: PHONE_DISPLAY, href: `tel:${PHONE_NUMBER}` },
+                { icon: Instagram, label: "Instagram", value: "@eloriastore1", href: INSTAGRAM_URL },
+                { icon: Mail, label: "Email", value: EMAIL_ADDRESS, href: `mailto:${EMAIL_ADDRESS}` },
+                { icon: MapPin, label: "Nairobi, Kenya", value: "Delivery countrywide" },
               ].map((c) => (
                 <a key={c.label} href={c.href} target={c.href?.startsWith("http") ? "_blank" : undefined} rel="noreferrer" className="flex items-start gap-4 group">
                   <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-secondary">

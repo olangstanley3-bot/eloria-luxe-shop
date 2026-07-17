@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Search, ShoppingBag, Heart, Menu, X, MessageCircle, ArrowUp, Instagram, Facebook } from "lucide-react";
 import { useEffect, useState, type ReactNode } from "react";
 import { useCart } from "@/lib/cart";
-import { CATEGORIES, whatsappUrl } from "@/lib/products";
+import { CATEGORIES, whatsappUrl, INSTAGRAM_URL, FACEBOOK_URL, PHONE_NUMBER, PHONE_DISPLAY } from "@/lib/products";
 
 export function SiteHeader() {
   const { count, setOpen } = useCart();
@@ -18,8 +18,11 @@ export function SiteHeader() {
 
   return (
     <>
-      <div className="bg-charcoal text-cream text-xs tracking-[0.2em] uppercase py-2.5 text-center">
-        Complimentary delivery on orders over KSh 10,000 · Easy 14-day returns
+      <div className="bg-charcoal text-cream text-[11px] tracking-[0.2em] uppercase py-2.5 text-center px-4">
+        <span className="hidden sm:inline">Complimentary delivery over KSh 10,000 · Easy 14-day returns · </span>
+        <a href={`tel:${PHONE_NUMBER}`} className="hover:underline">Call {PHONE_DISPLAY}</a>
+        <span className="mx-2 opacity-40">|</span>
+        <a href={whatsappUrl("Hi Eloria! I'd like to place an order.")} target="_blank" rel="noreferrer" className="hover:underline">WhatsApp us</a>
       </div>
       <header
         className={`sticky top-0 z-40 transition-all ${
@@ -115,8 +118,13 @@ export function SiteFooter() {
             Premium curtains, elegant handbags and fashionable ladies' shoes — thoughtfully curated, affordably priced.
           </p>
           <div className="mt-5 flex items-center gap-3">
-            <a href="#" aria-label="Instagram" className="p-2 rounded-full border border-border hover:bg-accent/20 transition"><Instagram className="h-4 w-4" /></a>
-            <a href="#" aria-label="Facebook" className="p-2 rounded-full border border-border hover:bg-accent/20 transition"><Facebook className="h-4 w-4" /></a>
+            <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" aria-label="Instagram" className="p-2 rounded-full border border-border hover:bg-accent/20 transition"><Instagram className="h-4 w-4" /></a>
+            <a href={FACEBOOK_URL} target="_blank" rel="noreferrer" aria-label="Facebook" className="p-2 rounded-full border border-border hover:bg-accent/20 transition"><Facebook className="h-4 w-4" /></a>
+            <a href={whatsappUrl("Hi Eloria!")} target="_blank" rel="noreferrer" aria-label="WhatsApp" className="p-2 rounded-full border border-border hover:bg-accent/20 transition"><MessageCircle className="h-4 w-4" /></a>
+          </div>
+          <div className="mt-4 space-y-1 text-sm text-foreground/80">
+            <a href={`tel:${PHONE_NUMBER}`} className="block hover:text-foreground">{PHONE_DISPLAY}</a>
+            <a href={whatsappUrl("Hi Eloria!")} target="_blank" rel="noreferrer" className="block hover:text-foreground">WhatsApp: {PHONE_DISPLAY}</a>
           </div>
         </div>
         <div>
