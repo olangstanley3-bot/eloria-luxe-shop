@@ -18,8 +18,11 @@ export function SiteHeader() {
 
   return (
     <>
-      <div className="bg-charcoal text-cream text-xs tracking-[0.2em] uppercase py-2.5 text-center">
-        Complimentary delivery on orders over KSh 10,000 · Easy 14-day returns
+      <div className="bg-charcoal text-cream text-[11px] tracking-[0.2em] uppercase py-2.5 text-center px-4">
+        <span className="hidden sm:inline">Complimentary delivery over KSh 10,000 · Easy 14-day returns · </span>
+        <a href={`tel:${PHONE_NUMBER}`} className="hover:underline">Call {PHONE_DISPLAY}</a>
+        <span className="mx-2 opacity-40">|</span>
+        <a href={whatsappUrl("Hi Eloria! I'd like to place an order.")} target="_blank" rel="noreferrer" className="hover:underline">WhatsApp us</a>
       </div>
       <header
         className={`sticky top-0 z-40 transition-all ${
