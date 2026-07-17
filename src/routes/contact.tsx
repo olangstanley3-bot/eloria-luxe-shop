@@ -2,7 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Mail, MapPin, Phone, MessageCircle } from "lucide-react";
 import { SiteShell } from "@/components/site-layout";
-import { whatsappUrl } from "@/lib/products";
+import { whatsappUrl, PHONE_NUMBER, PHONE_DISPLAY, EMAIL_ADDRESS, INSTAGRAM_URL } from "@/lib/products";
+import { Instagram } from "lucide-react";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
