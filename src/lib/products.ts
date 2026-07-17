@@ -95,6 +95,8 @@ export const CATEGORIES: {
       "Luxury",
       "Towels",
       "Cotton Sheets",
+      "Mattress Protectors",
+      "Cushion Covers",
     ],
   },
   {
