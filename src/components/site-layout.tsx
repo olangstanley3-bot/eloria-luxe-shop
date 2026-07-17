@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Search, ShoppingBag, Heart, Menu, X, MessageCircle, ArrowUp, Instagram, Facebook } from "lucide-react";
 import { useEffect, useState, type ReactNode } from "react";
 import { useCart } from "@/lib/cart";
-import { CATEGORIES, whatsappUrl } from "@/lib/products";
+import { CATEGORIES, whatsappUrl, INSTAGRAM_URL, FACEBOOK_URL, PHONE_NUMBER, PHONE_DISPLAY } from "@/lib/products";
 
 export function SiteHeader() {
   const { count, setOpen } = useCart();
