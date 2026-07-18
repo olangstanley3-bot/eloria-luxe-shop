@@ -11,7 +11,7 @@ export default defineTool({
     const items = CATEGORIES.map((c) => ({
       slug: c.slug,
       name: c.name,
-      description: c.description,
+      tagline: c.tagline,
       collections: c.collections,
     }));
     return {
