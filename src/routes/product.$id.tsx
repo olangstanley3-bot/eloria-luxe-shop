@@ -165,11 +165,11 @@ function ProductPage() {
           </div>
 
           <a
-            href={whatsappUrl(`Hi Eloria! I'm interested in this product: ${product.name} (${formatKES(product.price)}).`)}
+            href={whatsappUrl(`Hello Eloria Store, I'm interested in this product: ${product.name} (${formatKES(product.price)}). Please provide more details and availability.`)}
             target="_blank" rel="noreferrer"
             className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#25D366] px-8 py-3 text-sm font-medium text-[#128C7E] hover:bg-[#25D366]/10 transition"
           >
-            <MessageCircle className="h-4 w-4" /> I'm interested — WhatsApp us
+            <MessageCircle className="h-4 w-4" /> Order via WhatsApp
           </a>
 
           {/* Perks */}
