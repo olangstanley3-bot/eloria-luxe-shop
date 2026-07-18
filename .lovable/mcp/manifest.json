@@ -1,0 +1,135 @@
+{
+  "version": 1,
+  "sdk_version": "0.23.0",
+  "path": "/mcp",
+  "auth": {
+    "type": "none"
+  },
+  "mcp": {
+    "server": {
+      "name": "eloria-store-mcp",
+      "version": "0.1.0",
+      "title": "Eloria Store"
+    },
+    "tools": [
+      {
+        "name": "list_categories",
+        "title": "List categories",
+        "description": "List all product categories available at Eloria Store (curtains, bedding & home textiles, handbags, shoes).",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "search_products",
+        "title": "Search products",
+        "description": "Search Eloria Store's catalog. Filter by free-text query (name/description), category, collection, price range, or tag. Returns a list of matching products with prices in KES.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "query": {
+              "description": "Free-text search over product name and description.",
+              "type": "string"
+            },
+            "category": {
+              "description": "Category slug to filter by.",
+              "type": "string",
+              "enum": [
+                "curtains",
+                "bedding",
+                "handbags",
+                "shoes"
+              ]
+            },
+            "collection": {
+              "description": "Collection name to filter by (e.g. 'Blackout', 'Sheer').",
+              "type": "string"
+            },
+            "minPrice": {
+              "description": "Minimum price in KES.",
+              "type": "number",
+              "minimum": 0
+            },
+            "maxPrice": {
+              "description": "Maximum price in KES.",
+              "type": "number",
+              "minimum": 0
+            },
+            "tag": {
+              "description": "Filter by product tag.",
+              "type": "string",
+              "enum": [
+                "New",
+                "Bestseller",
+                "Limited",
+                "Sale"
+              ]
+            },
+            "limit": {
+              "description": "Max results to return (default 20).",
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 50
+            }
+          }
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_product",
+        "title": "Get product details",
+        "description": "Fetch full details for a single Eloria Store product by its id, including description, features, colors, sizes, price, stock and rating.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Product id (e.g. 'curtain-navy-solid')."
+            }
+          },
+          "required": [
+            "id"
+          ]
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_store_info",
+        "title": "Get store info",
+        "description": "Return Eloria Store's contact details, social links, and how customers can place orders (WhatsApp, phone, Instagram).",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
