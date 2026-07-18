@@ -65,22 +65,30 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
+const SITE_URL = "https://eloria-luxe-shop.lovable.app";
+const SITE_TITLE = "Eloria Store · Luxury Curtains, Bedding, Handbags & Shoes in Nairobi Kenya";
+const SITE_DESC = "Shop premium curtains, luxury bedding sets, elegant handbags and ladies' shoes in Nairobi, Kenya. Fast delivery countrywide. Order via WhatsApp +254 742 461 744.";
+const SITE_KEYWORDS = "curtains in Nairobi, curtains Kenya, luxury curtains Kenya, affordable curtains Nairobi, bedding Kenya, comforter sets Nairobi, handbags Kenya, ladies handbags Nairobi, ladies shoes Kenya, women's fashion Kenya, home décor Kenya, Eloria Store, shop curtains online Kenya, buy ladies shoes Kenya";
+
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Eloria Store · Style Your Home. Elevate Your Wardrobe." },
-      { name: "description", content: "Premium curtains, elegant handbags and ladies' shoes at affordable prices." },
+      { title: SITE_TITLE },
+      { name: "description", content: SITE_DESC },
+      { name: "keywords", content: SITE_KEYWORDS },
       { name: "author", content: "Eloria Store" },
-      { property: "og:title", content: "Eloria Store · Style Your Home. Elevate Your Wardrobe." },
-      { property: "og:description", content: "Premium curtains, elegant handbags and ladies' shoes at affordable prices." },
+      { name: "robots", content: "index, follow" },
+      { property: "og:site_name", content: "Eloria Store" },
+      { property: "og:title", content: SITE_TITLE },
+      { property: "og:description", content: SITE_DESC },
       { property: "og:type", content: "website" },
+      { property: "og:locale", content: "en_KE" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Eloria Store · Style Your Home. Elevate Your Wardrobe." },
-      { name: "twitter:description", content: "Premium curtains, elegant handbags and ladies' shoes at affordable prices." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/150a0d0e-34bd-49e1-b7aa-a8d101148633/id-preview-b2ad4ad4--4a36dbd9-fc27-4c07-a67b-77afaf2d568d.lovable.app-1784186569146.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/150a0d0e-34bd-49e1-b7aa-a8d101148633/id-preview-b2ad4ad4--4a36dbd9-fc27-4c07-a67b-77afaf2d568d.lovable.app-1784186569146.png" },
+      { name: "twitter:title", content: SITE_TITLE },
+      { name: "twitter:description", content: SITE_DESC },
+      { name: "theme-color", content: "#1a1a1a" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -88,6 +96,47 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "@id": `${SITE_URL}/#business`,
+          name: "Eloria Store",
+          image: `${SITE_URL}/favicon.ico`,
+          url: SITE_URL,
+          telephone: "+254742461744",
+          email: "hello@eloriastore.co.ke",
+          priceRange: "KSh",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "Kamukunji",
+            addressLocality: "Nairobi",
+            addressRegion: "Nairobi",
+            addressCountry: "KE",
+          },
+          areaServed: { "@type": "Country", name: "Kenya" },
+          sameAs: [
+            "https://www.instagram.com/eloriastore1",
+            "https://wa.me/254742461744",
+          ],
+          openingHoursSpecification: [
+            { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], opens: "09:00", closes: "19:00" },
+            { "@type": "OpeningHoursSpecification", dayOfWeek: "Sunday", opens: "11:00", closes: "17:00" },
+          ],
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "Eloria Store",
+          url: SITE_URL,
+        }),
+      },
     ],
   }),
   shellComponent: RootShell,

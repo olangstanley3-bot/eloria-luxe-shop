@@ -12,17 +12,46 @@ export const Route = createFileRoute("/product/$id")({
     if (!product) throw notFound();
     return { product };
   },
-  head: ({ loaderData }) => ({
-    meta: loaderData
-      ? [
-          { title: `${loaderData.product.name} · Eloria Store` },
-          { name: "description", content: loaderData.product.description },
-          { property: "og:title", content: loaderData.product.name },
-          { property: "og:description", content: loaderData.product.description },
-          { property: "og:image", content: loaderData.product.image },
-        ]
-      : [{ title: "Product · Eloria" }],
-  }),
+  head: ({ loaderData, params }) => {
+    if (!loaderData) return { meta: [{ title: "Product · Eloria" }] };
+    const p = loaderData.product;
+    const url = `https://eloria-luxe-shop.lovable.app/product/${params.id}`;
+    const absImg = p.image.startsWith("http") ? p.image : `https://eloria-luxe-shop.lovable.app${p.image}`;
+    return {
+      meta: [
+        { title: `${p.name} · Eloria Store Nairobi` },
+        { name: "description", content: `${p.description} Order via WhatsApp +254 742 461 744.` },
+        { property: "og:title", content: p.name },
+        { property: "og:description", content: p.description },
+        { property: "og:image", content: absImg },
+        { property: "og:url", content: url },
+        { property: "og:type", content: "product" },
+        { name: "twitter:image", content: absImg },
+      ],
+      links: [{ rel: "canonical", href: url }],
+      scripts: [{
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Product",
+          name: p.name,
+          description: p.description,
+          image: [absImg],
+          sku: p.id,
+          brand: { "@type": "Brand", name: "Eloria Store" },
+          aggregateRating: { "@type": "AggregateRating", ratingValue: p.rating, reviewCount: p.reviews },
+          offers: {
+            "@type": "Offer",
+            url,
+            priceCurrency: "KES",
+            price: p.price,
+            availability: p.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+            seller: { "@type": "Organization", name: "Eloria Store" },
+          },
+        }),
+      }],
+    };
+  },
   component: ProductPage,
   notFoundComponent: () => (
     <SiteShell><div className="mx-auto max-w-3xl px-6 py-32 text-center"><h1 className="font-display text-4xl">Product not found</h1></div></SiteShell>

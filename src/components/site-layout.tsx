@@ -1,8 +1,8 @@
 import { Link } from "@tanstack/react-router";
-import { Search, ShoppingBag, Heart, Menu, X, MessageCircle, ArrowUp, Instagram, Facebook } from "lucide-react";
+import { Search, ShoppingBag, Heart, Menu, X, MessageCircle, ArrowUp, Instagram, Facebook, MapPin } from "lucide-react";
 import { useEffect, useState, type ReactNode } from "react";
 import { useCart } from "@/lib/cart";
-import { CATEGORIES, whatsappUrl, INSTAGRAM_URL, FACEBOOK_URL, PHONE_NUMBER, PHONE_DISPLAY } from "@/lib/products";
+import { CATEGORIES, whatsappUrl, INSTAGRAM_URL, FACEBOOK_URL, PHONE_NUMBER, PHONE_DISPLAY, BUSINESS_LOCATION } from "@/lib/products";
 
 export function SiteHeader() {
   const { count, setOpen } = useCart();
@@ -122,9 +122,10 @@ export function SiteFooter() {
             <a href={FACEBOOK_URL} target="_blank" rel="noreferrer" aria-label="Facebook" className="p-2 rounded-full border border-border hover:bg-accent/20 transition"><Facebook className="h-4 w-4" /></a>
             <a href={whatsappUrl("Hi Eloria!")} target="_blank" rel="noreferrer" aria-label="WhatsApp" className="p-2 rounded-full border border-border hover:bg-accent/20 transition"><MessageCircle className="h-4 w-4" /></a>
           </div>
-          <div className="mt-4 space-y-1 text-sm text-foreground/80">
+          <div className="mt-4 space-y-1.5 text-sm text-foreground/80">
             <a href={`tel:${PHONE_NUMBER}`} className="block hover:text-foreground">{PHONE_DISPLAY}</a>
             <a href={whatsappUrl("Hi Eloria!")} target="_blank" rel="noreferrer" className="block hover:text-foreground">WhatsApp: {PHONE_DISPLAY}</a>
+            <a href="https://www.google.com/maps?q=Kamukunji,+Nairobi,+Kenya" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 hover:text-foreground"><MapPin className="h-3.5 w-3.5" /> {BUSINESS_LOCATION}</a>
           </div>
         </div>
         <div>
