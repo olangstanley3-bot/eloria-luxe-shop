@@ -9,9 +9,13 @@ import { SiteShell } from "@/components/site-layout";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Eloria Store · Style Your Home. Elevate Your Wardrobe." },
-      { name: "description", content: "Premium curtains, elegant handbags and ladies' shoes at affordable prices." },
+      { title: "Eloria Store · Luxury Curtains, Bedding, Handbags & Shoes in Nairobi" },
+      { name: "description", content: "Shop premium curtains, luxury bedding sets, elegant handbags and ladies' shoes in Nairobi, Kenya. Order via WhatsApp +254 742 461 744. Delivery countrywide." },
+      { property: "og:title", content: "Eloria Store · Luxury Curtains, Bedding, Handbags & Shoes in Nairobi" },
+      { property: "og:description", content: "Premium curtains, luxury bedding, handbags & shoes in Nairobi, Kenya. Order via WhatsApp." },
+      { property: "og:url", content: "https://eloria-luxe-shop.lovable.app/" },
     ],
+    links: [{ rel: "canonical", href: "https://eloria-luxe-shop.lovable.app/" }],
   }),
   component: Home,
 });

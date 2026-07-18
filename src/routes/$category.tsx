@@ -11,14 +11,23 @@ export const Route = createFileRoute("/$category")({
     if (!cat) throw notFound();
     return { cat };
   },
-  head: ({ loaderData }) => ({
-    meta: loaderData
-      ? [
-          { title: `${loaderData.cat.name} · Eloria Store` },
-          { name: "description", content: loaderData.cat.tagline },
-        ]
-      : [{ title: "Category · Eloria" }],
-  }),
+  head: ({ loaderData, params }) => {
+    if (!loaderData) return { meta: [{ title: "Category · Eloria" }] };
+    const cat = loaderData.cat;
+    const url = `https://eloria-luxe-shop.lovable.app/${params.category}`;
+    const absImg = cat.image.startsWith("http") ? cat.image : `https://eloria-luxe-shop.lovable.app${cat.image}`;
+    return {
+      meta: [
+        { title: `${cat.name} · Buy Online in Nairobi Kenya · Eloria Store` },
+        { name: "description", content: `${cat.tagline} Shop ${cat.name.toLowerCase()} in Nairobi, Kenya. Order via WhatsApp +254 742 461 744.` },
+        { property: "og:title", content: `${cat.name} · Eloria Store` },
+        { property: "og:description", content: cat.tagline },
+        { property: "og:image", content: absImg },
+        { property: "og:url", content: url },
+      ],
+      links: [{ rel: "canonical", href: url }],
+    };
+  },
   component: CategoryPage,
   notFoundComponent: () => (
     <SiteShell><div className="mx-auto max-w-3xl px-6 py-32 text-center"><h1 className="font-display text-4xl">Collection not found</h1></div></SiteShell>

@@ -36,6 +36,13 @@ import curtainOrange from "@/assets/uploads/IMG-20260713-WA0101.jpg.asset.json";
 import beddingWhiteTassel from "@/assets/uploads/IMG-20260713-WA0112.jpg.asset.json";
 import curtainKidsMickey from "@/assets/uploads/IMG-20260713-WA0117.jpg.asset.json";
 import beddingMonoGeo from "@/assets/uploads/IMG-20260713-WA0126.jpg.asset.json";
+import beddingWhiteDamask from "@/assets/uploads/IMG-20260713-WA0116.jpg_1.jpg.asset.json";
+import beddingNavyVelvet from "@/assets/uploads/IMG-20260713-WA0122.jpg.jpg.asset.json";
+import beddingNavyDreamSoft from "@/assets/uploads/IMG-20260713-WA0124.jpg_2.jpg.asset.json";
+import beddingPinkHeartsKids from "@/assets/uploads/IMG-20260713-WA0125.jpg.jpg.asset.json";
+import beddingPinkRibbed from "@/assets/uploads/IMG-20260713-WA0127.jpg.jpg.asset.json";
+import beddingOrangeLeaves from "@/assets/uploads/IMG-20260713-WA0134.jpg.jpg.asset.json";
+import beddingSkyStripe from "@/assets/uploads/IMG-20260713-WA0138.jpg.jpg.asset.json";
 
 export type CategorySlug = "curtains" | "bedding" | "handbags" | "shoes";
 
@@ -536,7 +543,100 @@ export const PRODUCTS: Product[] = [
     tag: "Bestseller", rating: 4.9, reviews: 168, stock: 90,
   }),
 
+  p({
+    id: "navy-velvet-damask-set",
+    name: "Navy Velvet Damask 6pc Comforter Set",
+    category: "bedding",
+    collection: "Luxury",
+    price: 10500, originalPrice: 13800,
+    image: beddingNavyVelvet.url, gallery: [beddingNavyVelvet.url, beddingNavyLux.url, beddingNavyDreamSoft.url],
+    colors: ["Royal Navy", "Wine", "Emerald"],
+    sizes: ["5x6", "6x6", "6x7"],
+    description: "Deep royal navy velvet-touch comforter with silver damask embossing — the pinnacle of bedroom luxury.",
+    features: ["Velvet-touch finish", "Silver damask emboss", "6-piece set with cushions"],
+    tag: "New", rating: 4.9, reviews: 58, stock: 14,
+  }),
+  p({
+    id: "white-damask-luxe-set",
+    name: "White Damask 5pc Luxe Set",
+    category: "bedding",
+    collection: "Luxury",
+    price: 9500, originalPrice: 12200,
+    image: beddingWhiteDamask.url, gallery: [beddingWhiteDamask.url, beddingWhiteRibbed.url],
+    colors: ["Ivory White"],
+    sizes: ["5x6", "6x6", "6x7"],
+    description: "Elegant white damask-embossed comforter with soft grey reverse — timeless, hotel-inspired luxury.",
+    features: ["Damask emboss", "Reversible grey", "5-piece set"],
+    tag: "Bestseller", rating: 4.9, reviews: 84, stock: 18,
+  }),
+  p({
+    id: "navy-dreamsoft-ribbed-set",
+    name: "DreamSoft Navy Ribbed Fleece Set",
+    category: "bedding",
+    collection: "Duvet Sets",
+    price: 7800, originalPrice: 9500,
+    image: beddingNavyDreamSoft.url, gallery: [beddingNavyDreamSoft.url, beddingWhiteRibbed.url, beddingPinkRibbed.url],
+    colors: ["Navy", "White", "Pink"],
+    sizes: ["5x6", "6x6", "6x7"],
+    description: "Ultra-warm ribbed fleece duvet set in deep navy — DreamSoft cosiness for cold nights.",
+    features: ["Ribbed fleece", "6-piece set", "Machine washable"],
+    tag: "Bestseller", rating: 4.9, reviews: 96, stock: 22,
+  }),
+  p({
+    id: "pink-ribbed-fleece-set",
+    name: "Pink Ribbed Fleece Duvet Set",
+    category: "bedding",
+    collection: "Duvet Sets",
+    price: 7800,
+    image: beddingPinkRibbed.url, gallery: [beddingPinkRibbed.url, beddingNavyDreamSoft.url],
+    colors: ["Pink", "Blush", "Coral"],
+    sizes: ["5x6", "6x6", "6x7"],
+    description: "Playful pink ribbed fleece bedding — irresistibly soft and warm.",
+    features: ["Ribbed fleece", "6-piece set", "Reversible design"],
+    tag: "New", rating: 4.8, reviews: 47, stock: 20,
+  }),
+  p({
+    id: "pink-hearts-kids-duvet",
+    name: "Pink Hearts Kids Duvet",
+    category: "bedding",
+    collection: "Kids Bedding",
+    price: 3400,
+    image: beddingPinkHeartsKids.url, gallery: [beddingPinkHeartsKids.url],
+    colors: ["Pink/Grey"],
+    sizes: ["4x6", "5x6"],
+    description: "Sweet pink 'Good Night' hearts duvet with cosy grey fleece reverse — a bedtime favourite.",
+    features: ["Reversible fleece", "Kid-safe fabric", "Machine washable"],
+    tag: "New", rating: 4.8, reviews: 32, stock: 28,
+  }),
+  p({
+    id: "orange-leaves-cotton-set",
+    name: "Autumn Leaves Cotton Bedsheet Set",
+    category: "bedding",
+    collection: "Cotton Sheets",
+    price: 4200, originalPrice: 5400,
+    image: beddingOrangeLeaves.url, gallery: [beddingOrangeLeaves.url],
+    colors: ["White/Orange"],
+    sizes: ["5x6", "6x6", "6x7"],
+    description: "Crisp cotton bedsheet set with an orange leaves and stripes print — bright, fresh, easy-care.",
+    features: ["100% cotton", "4-piece set", "Fade-resistant print"],
+    tag: "Sale", rating: 4.7, reviews: 39, stock: 30,
+  }),
+  p({
+    id: "sky-stripe-satin-set",
+    name: "Sky Blue Satin Stripe 6pc Set",
+    category: "bedding",
+    collection: "Cotton Sheets",
+    price: 5800,
+    image: beddingSkyStripe.url, gallery: [beddingSkyStripe.url],
+    colors: ["Sky Blue", "White", "Grey"],
+    sizes: ["5x6", "6x6", "6x7"],
+    description: "Soft satin-stripe cotton bedding in calming sky blue — includes bedsheet, duvet cover and 4 pillowcases.",
+    features: ["Satin-stripe cotton", "1 bedsheet + 1 duvet + 4 pillowcases", "300 thread count"],
+    tag: "New", rating: 4.8, reviews: 52, stock: 24,
+  }),
+
   // ===== HANDBAGS ===== (placeholders until real photos arrive)
+
   p({
     id: "cream-carry-tote",
     name: "Cream Carry Tote",
@@ -640,9 +740,12 @@ export function formatKES(n: number) {
 export const WHATSAPP_NUMBER = "254742461744";
 export const PHONE_NUMBER = "+254742461744";
 export const PHONE_DISPLAY = "+254 742 461 744";
-export const INSTAGRAM_URL = "https://www.instagram.com/eloriastore1";
+export const INSTAGRAM_URL = "https://www.instagram.com/eloriastore1?utm_source=qr&igsh=ZDc0dzZhaXgzNHY4";
 export const FACEBOOK_URL = "https://www.facebook.com/eloriastore1";
 export const EMAIL_ADDRESS = "hello@eloriastore.co.ke";
+export const BUSINESS_LOCATION = "Kamukunji, Nairobi, Kenya";
+export const BUSINESS_ADDRESS = "Kamukunji, Nairobi, Kenya";
+export const SITE_URL = "https://eloria-luxe-shop.lovable.app";
 
 export function whatsappUrl(message: string) {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;

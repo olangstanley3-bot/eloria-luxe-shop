@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Mail, MapPin, Phone, MessageCircle } from "lucide-react";
 import { SiteShell } from "@/components/site-layout";
-import { whatsappUrl, PHONE_NUMBER, PHONE_DISPLAY, EMAIL_ADDRESS, INSTAGRAM_URL } from "@/lib/products";
+import { whatsappUrl, PHONE_NUMBER, PHONE_DISPLAY, EMAIL_ADDRESS, INSTAGRAM_URL, BUSINESS_LOCATION } from "@/lib/products";
 import { Instagram } from "lucide-react";
 
 export const Route = createFileRoute("/contact")({
@@ -31,7 +31,7 @@ function ContactPage() {
                 { icon: Phone, label: "Call us", value: PHONE_DISPLAY, href: `tel:${PHONE_NUMBER}` },
                 { icon: Instagram, label: "Instagram", value: "@eloriastore1", href: INSTAGRAM_URL },
                 { icon: Mail, label: "Email", value: EMAIL_ADDRESS, href: `mailto:${EMAIL_ADDRESS}` },
-                { icon: MapPin, label: "Nairobi, Kenya", value: "Delivery countrywide" },
+                { icon: MapPin, label: "Visit us", value: BUSINESS_LOCATION, href: "https://www.google.com/maps?q=Kamukunji,+Nairobi,+Kenya" },
               ].map((c) => (
                 <a key={c.label} href={c.href} target={c.href?.startsWith("http") ? "_blank" : undefined} rel="noreferrer" className="flex items-start gap-4 group">
                   <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-secondary">
@@ -52,8 +52,8 @@ function ContactPage() {
 
             <div className="mt-10 aspect-[16/10] w-full overflow-hidden rounded-3xl border border-border">
               <iframe
-                title="Eloria location"
-                src="https://www.google.com/maps?q=Westlands+Nairobi&output=embed"
+                title="Eloria Store — Kamukunji, Nairobi"
+                src="https://www.google.com/maps?q=Kamukunji,+Nairobi,+Kenya&output=embed"
                 className="h-full w-full"
                 loading="lazy"
               />

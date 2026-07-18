@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://eloria-luxe-shop.lovable.app/sitemap.xml
