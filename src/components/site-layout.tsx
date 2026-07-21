@@ -119,8 +119,9 @@ function AuthHeaderLink() {
   }
   if (!user) {
     return (
-      <Link to="/auth" aria-label="Sign in" className="p-2 hover:opacity-70 transition">
+      <Link to="/auth" aria-label="Sign in" className="hidden items-center gap-1.5 text-sm font-medium hover:opacity-70 transition md:flex">
         <User className="h-5 w-5" />
+        <span>Sign In</span>
       </Link>
     );
   }
