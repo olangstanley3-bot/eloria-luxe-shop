@@ -1,8 +1,10 @@
 import { Link } from "@tanstack/react-router";
-import { Search, ShoppingBag, Heart, Menu, X, MessageCircle, ArrowUp, Instagram, Facebook, MapPin } from "lucide-react";
+import { Search, ShoppingBag, Heart, Menu, X, MessageCircle, ArrowUp, Instagram, Facebook, MapPin, User, LogOut } from "lucide-react";
 import { useEffect, useState, type ReactNode } from "react";
 import { useCart } from "@/lib/cart";
+import { useAuth } from "@/lib/auth";
 import { CATEGORIES, whatsappUrl, INSTAGRAM_URL, FACEBOOK_URL, PHONE_NUMBER, PHONE_DISPLAY, BUSINESS_LOCATION } from "@/lib/products";
+
 
 export function SiteHeader() {
   const { count, setOpen } = useCart();
@@ -81,13 +83,14 @@ export function SiteHeader() {
                 </span>
               )}
             </button>
+            <AuthHeaderLink />
           </div>
         </nav>
       </header>
 
       {mobileOpen && (
         <div className="fixed inset-0 z-50 bg-background md:hidden">
-          <div className="flex items-center justify-between px-6 py-4">
+        <div className="flex items-center justify-between px-6 py-4">
             <span className="font-display text-2xl">Eloria</span>
             <button onClick={() => setMobileOpen(false)} aria-label="Close menu">
               <X className="h-5 w-5" />
@@ -101,10 +104,66 @@ export function SiteHeader() {
             ))}
             <li><Link to="/about" onClick={() => setMobileOpen(false)}>About</Link></li>
             <li><Link to="/contact" onClick={() => setMobileOpen(false)}>Contact</Link></li>
+            <li><MobileAuthLink onClick={() => setMobileOpen(false)} /></li>
           </ul>
         </div>
       )}
     </>
+  );
+}
+
+function AuthHeaderLink() {
+  const { user, isLoading, signOut } = useAuth();
+  if (isLoading) {
+    return <div className="h-5 w-5" />;
+  }
+  if (!user) {
+    return (
+      <Link to="/auth" aria-label="Sign in" className="flex items-center gap-1.5 p-2 text-sm font-medium hover:opacity-70 transition md:px-0">
+        <User className="h-5 w-5" />
+        <span className="hidden md:inline">Sign In</span>
+      </Link>
+    );
+  }
+  return (
+    <div className="group relative">
+      <button aria-label="Account" className="p-2 hover:opacity-70 transition">
+        <User className="h-5 w-5" />
+      </button>
+      <div className="absolute right-0 top-full mt-1 hidden w-48 rounded-2xl border border-border bg-card p-2 shadow-luxe group-hover:block">
+        <div className="px-3 py-2">
+          <div className="text-sm font-medium">{user.fullName || user.email}</div>
+          <div className="text-xs text-muted-foreground truncate">{user.email}</div>
+        </div>
+        <Link to="/admin" className="block rounded-xl px-3 py-2 text-sm hover:bg-accent/20">Admin Dashboard</Link>
+        <button
+          onClick={() => signOut()}
+          className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm text-destructive hover:bg-destructive/10"
+        >
+          <LogOut className="h-4 w-4" /> Sign out
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function MobileAuthLink({ onClick }: { onClick: () => void }) {
+  const { user, signOut } = useAuth();
+  if (!user) {
+    return (
+      <Link to="/auth" onClick={onClick} className="flex items-center gap-2 text-primary">
+        <User className="h-5 w-5" /> Sign In / Create Account
+      </Link>
+    );
+  }
+  return (
+    <div className="space-y-2">
+      <div className="text-sm text-muted-foreground truncate">{user.email}</div>
+      <Link to="/admin" onClick={onClick} className="block text-primary">Admin Dashboard</Link>
+      <button onClick={() => { onClick(); signOut(); }} className="flex items-center gap-2 text-destructive">
+        <LogOut className="h-4 w-4" /> Sign out
+      </button>
+    </div>
   );
 }
 
