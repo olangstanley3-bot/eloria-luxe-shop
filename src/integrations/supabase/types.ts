@@ -376,16 +376,66 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      public_site_settings: {
+        Row: {
+          business_address: string | null
+          business_hours: string | null
+          business_location: string | null
+          email_address: string | null
+          facebook_url: string | null
+          google_analytics_id: string | null
+          id: number | null
+          instagram_url: string | null
+          meta_pixel_id: string | null
+          phone_display: string | null
+          phone_number: string | null
+          site_url: string | null
+          tiktok_pixel_id: string | null
+          tiktok_url: string | null
+          updated_at: string | null
+          whatsapp_number: string | null
+        }
+        Insert: {
+          business_address?: string | null
+          business_hours?: string | null
+          business_location?: string | null
+          email_address?: string | null
+          facebook_url?: string | null
+          google_analytics_id?: string | null
+          id?: number | null
+          instagram_url?: string | null
+          meta_pixel_id?: string | null
+          phone_display?: string | null
+          phone_number?: string | null
+          site_url?: string | null
+          tiktok_pixel_id?: string | null
+          tiktok_url?: string | null
+          updated_at?: string | null
+          whatsapp_number?: string | null
+        }
+        Update: {
+          business_address?: string | null
+          business_hours?: string | null
+          business_location?: string | null
+          email_address?: string | null
+          facebook_url?: string | null
+          google_analytics_id?: string | null
+          id?: number | null
+          instagram_url?: string | null
+          meta_pixel_id?: string | null
+          phone_display?: string | null
+          phone_number?: string | null
+          site_url?: string | null
+          tiktok_pixel_id?: string | null
+          tiktok_url?: string | null
+          updated_at?: string | null
+          whatsapp_number?: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
-      has_role: {
-        Args: {
-          _role: Database["public"]["Enums"]["app_role"]
-          _user_id: string
-        }
-        Returns: boolean
-      }
+      [_ in never]: never
     }
     Enums: {
       app_role: "admin" | "staff" | "user"
