@@ -14,6 +14,8 @@ export type AuthContextValue = {
   user: AuthUser | null;
   session: Session | null;
   isLoading: boolean;
+  isAdmin: boolean;
+  isRoleLoading: boolean;
   signIn: (email: string, password: string) => Promise<{ error?: string }>;
   signUp: (email: string, password: string, fullName?: string) => Promise<{ error?: string; needsConfirmation?: boolean }>;
   signInWithGoogle: () => Promise<{ error?: string }>;
@@ -42,6 +44,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [session, setSession] = useState<Session | null>(null);
   const [user, setUser] = useState<AuthUser | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [isRoleLoading, setIsRoleLoading] = useState(true);
 
   useEffect(() => {
     let mounted = true;
@@ -65,6 +69,31 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       listener.subscription.unsubscribe();
     };
   }, []);
+
+  useEffect(() => {
+    let active = true;
+    const userId = session?.user?.id;
+    if (!userId) {
+      setIsAdmin(false);
+      setIsRoleLoading(false);
+      return;
+    }
+    setIsRoleLoading(true);
+    supabase
+      .from("user_roles")
+      .select("role")
+      .eq("user_id", userId)
+      .eq("role", "admin")
+      .maybeSingle()
+      .then(({ data, error }) => {
+        if (!active) return;
+        setIsAdmin(!error && !!data);
+        setIsRoleLoading(false);
+      });
+    return () => {
+      active = false;
+    };
+  }, [session?.user?.id]);
 
   const signIn = useCallback(async (email: string, password: string) => {
     const { error } = await supabase.auth.signInWithPassword({ email, password });
@@ -97,6 +126,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     await supabase.auth.signOut();
     setSession(null);
     setUser(null);
+    setIsAdmin(false);
   }, []);
 
   return (
@@ -105,6 +135,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         user,
         session,
         isLoading,
+        isAdmin,
+        isRoleLoading,
         signIn,
         signUp,
         signInWithGoogle,
