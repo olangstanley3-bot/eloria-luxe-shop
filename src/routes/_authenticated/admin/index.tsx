@@ -32,6 +32,9 @@ function AdminDashboard() {
           </div>
           <div className="flex items-center gap-3">
             <span className="hidden text-sm text-muted-foreground sm:inline">{user?.email}</span>
+            <Button asChild variant="outline" size="sm" className="rounded-full">
+              <Link to="/">View Store</Link>
+            </Button>
             <Button variant="ghost" size="sm" onClick={() => signOut()}>
               <LogOut className="mr-2 h-4 w-4" /> Sign out
             </Button>

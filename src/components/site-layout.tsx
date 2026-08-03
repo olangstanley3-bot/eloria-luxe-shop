@@ -113,7 +113,7 @@ export function SiteHeader() {
 }
 
 function AuthHeaderLink() {
-  const { user, isLoading, signOut } = useAuth();
+  const { user, isLoading, isAdmin, signOut } = useAuth();
   if (isLoading) {
     return <div className="h-5 w-5" />;
   }
@@ -135,7 +135,9 @@ function AuthHeaderLink() {
           <div className="text-sm font-medium">{user.fullName || user.email}</div>
           <div className="text-xs text-muted-foreground truncate">{user.email}</div>
         </div>
-        <Link to="/admin" className="block rounded-xl px-3 py-2 text-sm hover:bg-accent/20">Admin Dashboard</Link>
+        {isAdmin && (
+          <Link to="/admin" className="block rounded-xl px-3 py-2 text-sm hover:bg-accent/20">View Admin Dashboard</Link>
+        )}
         <button
           onClick={() => signOut()}
           className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm text-destructive hover:bg-destructive/10"
@@ -148,7 +150,7 @@ function AuthHeaderLink() {
 }
 
 function MobileAuthLink({ onClick }: { onClick: () => void }) {
-  const { user, signOut } = useAuth();
+  const { user, isAdmin, signOut } = useAuth();
   if (!user) {
     return (
       <Link to="/auth" onClick={onClick} className="flex items-center gap-2 text-primary">
@@ -159,7 +161,9 @@ function MobileAuthLink({ onClick }: { onClick: () => void }) {
   return (
     <div className="space-y-2">
       <div className="text-sm text-muted-foreground truncate">{user.email}</div>
-      <Link to="/admin" onClick={onClick} className="block text-primary">Admin Dashboard</Link>
+      {isAdmin && (
+        <Link to="/admin" onClick={onClick} className="block text-primary">View Admin Dashboard</Link>
+      )}
       <button onClick={() => { onClick(); signOut(); }} className="flex items-center gap-2 text-destructive">
         <LogOut className="h-4 w-4" /> Sign out
       </button>
