@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
-import { PRODUCTS, type Product } from "./products";
+import { type Product } from "./products";
+import { getStoreProducts } from "./store";
 
 export type CartItem = {
   productId: string;
@@ -40,7 +41,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
       const w = localStorage.getItem(WISH_KEY);
       if (c) setItems(JSON.parse(c));
       if (w) setWishlist(JSON.parse(w));
-    } catch {}
+    } catch (e) {
+      console.warn("Failed to parse cart or wishlist from localStorage", e);
+    }
     setHydrated(true);
   }, []);
 
@@ -53,7 +56,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const productMap = useMemo(() => {
     const m: Record<string, Product> = {};
-    for (const p of PRODUCTS) m[p.id] = p;
+    for (const p of getStoreProducts()) m[p.id] = p;
     return m;
   }, []);
 
@@ -61,22 +64,33 @@ export function CartProvider({ children }: { children: ReactNode }) {
     const count = items.reduce((s, i) => s + i.qty, 0);
     const subtotal = items.reduce((s, i) => s + (productMap[i.productId]?.price ?? 0) * i.qty, 0);
     return {
-      items, wishlist, open, setOpen, productMap, count, subtotal,
-      add: (item) => setItems((prev) => {
-        const idx = prev.findIndex(
-          (x) => x.productId === item.productId && x.color === item.color && x.size === item.size
-        );
-        if (idx >= 0) {
-          const next = [...prev];
-          next[idx] = { ...next[idx], qty: next[idx].qty + item.qty };
-          return next;
-        }
-        return [...prev, item];
-      }),
+      items,
+      wishlist,
+      open,
+      setOpen,
+      productMap,
+      count,
+      subtotal,
+      add: (item) =>
+        setItems((prev) => {
+          const idx = prev.findIndex(
+            (x) => x.productId === item.productId && x.color === item.color && x.size === item.size,
+          );
+          if (idx >= 0) {
+            const next = [...prev];
+            next[idx] = { ...next[idx], qty: next[idx].qty + item.qty };
+            return next;
+          }
+          return [...prev, item];
+        }),
       remove: (id) => setItems((prev) => prev.filter((i) => i.productId !== id)),
-      setQty: (id, qty) => setItems((prev) => prev.map((i) => i.productId === id ? { ...i, qty: Math.max(1, qty) } : i)),
+      setQty: (id, qty) =>
+        setItems((prev) =>
+          prev.map((i) => (i.productId === id ? { ...i, qty: Math.max(1, qty) } : i)),
+        ),
       clear: () => setItems([]),
-      toggleWish: (id) => setWishlist((prev) => prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]),
+      toggleWish: (id) =>
+        setWishlist((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id])),
     };
   }, [items, wishlist, open, productMap]);
 

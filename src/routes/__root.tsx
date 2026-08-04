@@ -16,7 +16,6 @@ import { AuthProvider } from "@/lib/auth";
 import { Toaster } from "@/components/ui/sonner";
 import { supabase } from "@/integrations/supabase/client";
 
-
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -57,12 +56,20 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
-            onClick={() => { router.invalidate(); reset(); }}
+            onClick={() => {
+              router.invalidate();
+              reset();
+            }}
             className="rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground hover:opacity-90"
           >
             Try again
           </button>
-          <a href="/" className="rounded-full border border-input bg-background px-5 py-2.5 text-sm font-medium">Go home</a>
+          <a
+            href="/"
+            className="rounded-full border border-input bg-background px-5 py-2.5 text-sm font-medium"
+          >
+            Go home
+          </a>
         </div>
       </div>
     </div>
@@ -71,8 +78,10 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 
 const SITE_URL = "https://eloria-luxe-shop.lovable.app";
 const SITE_TITLE = "Eloria Store · Luxury Curtains, Bedding, Handbags & Shoes in Nairobi Kenya";
-const SITE_DESC = "Shop premium curtains, luxury bedding sets, elegant handbags and ladies' shoes in Nairobi, Kenya. Fast delivery countrywide. Order via WhatsApp +254 742 461 744.";
-const SITE_KEYWORDS = "curtains in Nairobi, curtains Kenya, luxury curtains Kenya, affordable curtains Nairobi, bedding Kenya, comforter sets Nairobi, handbags Kenya, ladies handbags Nairobi, ladies shoes Kenya, women's fashion Kenya, home décor Kenya, Eloria Store, shop curtains online Kenya, buy ladies shoes Kenya";
+const SITE_DESC =
+  "Shop premium curtains, luxury bedding sets, elegant handbags and ladies' shoes in Nairobi, Kenya. Fast delivery countrywide. Order via WhatsApp +254 742 461 744.";
+const SITE_KEYWORDS =
+  "curtains in Nairobi, curtains Kenya, luxury curtains Kenya, affordable curtains Nairobi, bedding Kenya, comforter sets Nairobi, handbags Kenya, ladies handbags Nairobi, ladies shoes Kenya, women's fashion Kenya, home décor Kenya, Eloria Store, shop curtains online Kenya, buy ladies shoes Kenya";
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
@@ -99,7 +108,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap",
+      },
     ],
     scripts: [
       {
@@ -122,13 +134,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
             addressCountry: "KE",
           },
           areaServed: { "@type": "Country", name: "Kenya" },
-          sameAs: [
-            "https://www.instagram.com/eloriastore1",
-            "https://wa.me/254742461744",
-          ],
+          sameAs: ["https://www.instagram.com/eloriastore1", "https://wa.me/254742461744"],
           openingHoursSpecification: [
-            { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], opens: "09:00", closes: "19:00" },
-            { "@type": "OpeningHoursSpecification", dayOfWeek: "Sunday", opens: "11:00", closes: "17:00" },
+            {
+              "@type": "OpeningHoursSpecification",
+              dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+              opens: "09:00",
+              closes: "19:00",
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              dayOfWeek: "Sunday",
+              opens: "11:00",
+              closes: "17:00",
+            },
           ],
         }),
       },

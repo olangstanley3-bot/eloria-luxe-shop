@@ -18,11 +18,18 @@ function WishPage() {
         {items.length === 0 ? (
           <div className="mt-12 rounded-3xl border border-border bg-secondary/30 p-16 text-center">
             <p className="text-muted-foreground">Save pieces you love to find them here later.</p>
-            <Link to="/" className="mt-6 inline-block rounded-full bg-primary px-6 py-3 text-sm text-primary-foreground">Start browsing</Link>
+            <Link
+              to="/"
+              className="mt-6 inline-block rounded-full bg-primary px-6 py-3 text-sm text-primary-foreground"
+            >
+              Start browsing
+            </Link>
           </div>
         ) : (
           <div className="mt-10 grid grid-cols-2 gap-6 md:grid-cols-4">
-            {items.map((p) => <ProductCard key={p.id} product={p} />)}
+            {items.map((p) => (
+              <ProductCard key={p.id} product={p} />
+            ))}
           </div>
         )}
       </section>

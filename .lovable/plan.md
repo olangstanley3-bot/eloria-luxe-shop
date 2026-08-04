@@ -1,4 +1,3 @@
-
 ## Goal
 
 Turn Eloria Store into an admin-manageable storefront: database-backed catalog, image storage, secure admin login, and a full CRUD dashboard — while keeping the premium public design untouched.
@@ -30,6 +29,7 @@ Turn Eloria Store into an admin-manageable storefront: database-backed catalog, 
 Auth-gated (email/password + Google sign-in), `admin` role required.
 
 **Screens:**
+
 - **Dashboard home** — quick stats: product count, enquiries, low-stock.
 - **Products** — table + filters, inline stock/price edits, add/edit modal with drag-and-drop image gallery, tag toggles (New / Bestseller / Sale), archive toggle.
 - **Categories & Collections** — reorder, rename, upload hero image.
@@ -58,12 +58,14 @@ Auth-gated (email/password + Google sign-in), `admin` role required.
 ## What I need from you before I start
 
 Nothing to start Phases 1–3. You'll need to:
+
 1. **Sign up on the site once** after I enable auth so I can promote your account to admin.
 2. **Confirm the new "Sofa Covers" category name** (or suggest another).
 
 ## Out of scope for this turn — needs your input later
 
 Not blockers for launch; call these out when you're ready:
+
 - **Google Analytics / Meta Pixel / TikTok Pixel** — send the IDs and I'll wire them in.
 - **Google Search Console** — send the verification tag.
 - **Payments (M-Pesa / card)** — separate integration; WhatsApp checkout stays as the primary CTA.

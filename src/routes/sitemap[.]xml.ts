@@ -15,8 +15,7 @@ export const Route = createFileRoute("/sitemap.xml")({
 
         const urls = all
           .map(
-            (path) =>
-              `  <url><loc>${BASE_URL}${path}</loc><changefreq>weekly</changefreq></url>`,
+            (path) => `  <url><loc>${BASE_URL}${path}</loc><changefreq>weekly</changefreq></url>`,
           )
           .join("\n");
 

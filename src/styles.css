@@ -49,20 +49,20 @@
   --radius: 0.75rem;
 
   /* Luxury neutral palette */
-  --background: oklch(0.985 0.008 80);          /* ivory */
-  --foreground: oklch(0.22 0.02 60);            /* charcoal */
+  --background: oklch(0.985 0.008 80); /* ivory */
+  --foreground: oklch(0.22 0.02 60); /* charcoal */
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.22 0.02 60);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.22 0.02 60);
 
-  --primary: oklch(0.22 0.02 60);               /* deep charcoal */
+  --primary: oklch(0.22 0.02 60); /* deep charcoal */
   --primary-foreground: oklch(0.985 0.008 80);
-  --secondary: oklch(0.94 0.02 80);             /* soft beige */
+  --secondary: oklch(0.94 0.02 80); /* soft beige */
   --secondary-foreground: oklch(0.22 0.02 60);
   --muted: oklch(0.955 0.012 80);
   --muted-foreground: oklch(0.5 0.02 60);
-  --accent: oklch(0.82 0.08 78);                /* champagne gold accent */
+  --accent: oklch(0.82 0.08 78); /* champagne gold accent */
   --accent-foreground: oklch(0.22 0.02 60);
   --destructive: oklch(0.55 0.2 25);
   --destructive-foreground: oklch(0.99 0 0);
@@ -98,15 +98,25 @@
 }
 
 @layer base {
-  * { border-color: var(--color-border); }
-  html { scroll-behavior: smooth; }
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
-  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.01em; }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
 }
 
 @utility font-display {
@@ -120,10 +130,12 @@
 }
 
 @utility gradient-luxe {
-  background: linear-gradient(135deg,
+  background: linear-gradient(
+    135deg,
     color-mix(in oklab, var(--color-champagne) 40%, var(--color-background)) 0%,
     var(--color-background) 55%,
-    color-mix(in oklab, var(--color-blush) 30%, var(--color-background)) 100%);
+    color-mix(in oklab, var(--color-blush) 30%, var(--color-background)) 100%
+  );
 }
 
 @utility text-gold {
@@ -131,7 +143,9 @@
 }
 
 @utility hover-lift {
-  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease;
+  transition:
+    transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.4s ease;
   &:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-luxe);
@@ -143,13 +157,23 @@
 }
 
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @keyframes fade-up {
-  from { opacity: 0; transform: translateY(16px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @utility animate-fade-up {

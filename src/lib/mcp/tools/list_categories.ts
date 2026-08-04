@@ -4,7 +4,8 @@ import { CATEGORIES } from "@/lib/products";
 export default defineTool({
   name: "list_categories",
   title: "List categories",
-  description: "List all product categories available at Eloria Store (curtains, bedding & home textiles, handbags, shoes).",
+  description:
+    "List all product categories available at Eloria Store (curtains, bedding & home textiles, handbags, shoes).",
   inputSchema: {},
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
   handler: () => {

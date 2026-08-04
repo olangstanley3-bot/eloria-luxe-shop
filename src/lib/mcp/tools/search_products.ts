@@ -13,11 +13,23 @@ export default defineTool({
       .enum(["curtains", "bedding", "handbags", "shoes"])
       .optional()
       .describe("Category slug to filter by."),
-    collection: z.string().optional().describe("Collection name to filter by (e.g. 'Blackout', 'Sheer')."),
+    collection: z
+      .string()
+      .optional()
+      .describe("Collection name to filter by (e.g. 'Blackout', 'Sheer')."),
     minPrice: z.number().nonnegative().optional().describe("Minimum price in KES."),
     maxPrice: z.number().nonnegative().optional().describe("Maximum price in KES."),
-    tag: z.enum(["New", "Bestseller", "Limited", "Sale"]).optional().describe("Filter by product tag."),
-    limit: z.number().int().min(1).max(50).optional().describe("Max results to return (default 20)."),
+    tag: z
+      .enum(["New", "Bestseller", "Limited", "Sale"])
+      .optional()
+      .describe("Filter by product tag."),
+    limit: z
+      .number()
+      .int()
+      .min(1)
+      .max(50)
+      .optional()
+      .describe("Max results to return (default 20)."),
   },
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
   handler: ({ query, category, collection, minPrice, maxPrice, tag, limit }) => {
@@ -28,7 +40,8 @@ export default defineTool({
       if (minPrice != null && p.price < minPrice) return false;
       if (maxPrice != null && p.price > maxPrice) return false;
       if (tag && p.tag !== tag) return false;
-      if (q && !`${p.name} ${p.description} ${p.collection}`.toLowerCase().includes(q)) return false;
+      if (q && !`${p.name} ${p.description} ${p.collection}`.toLowerCase().includes(q))
+        return false;
       return true;
     })
       .slice(0, limit ?? 20)

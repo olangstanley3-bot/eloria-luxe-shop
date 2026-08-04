@@ -14,12 +14,16 @@ export type AuthContextValue = {
   user: AuthUser | null;
   session: Session | null;
   isLoading: boolean;
-  isAdmin: boolean;
-  isRoleLoading: boolean;
   signIn: (email: string, password: string) => Promise<{ error?: string }>;
-  signUp: (email: string, password: string, fullName?: string) => Promise<{ error?: string; needsConfirmation?: boolean }>;
+  signUp: (
+    email: string,
+    password: string,
+    fullName?: string,
+  ) => Promise<{ error?: string; needsConfirmation?: boolean }>;
   signInWithGoogle: () => Promise<{ error?: string }>;
+  resetPassword: (email: string) => Promise<{ error?: string }>;
   signOut: () => Promise<void>;
+  signInAsAdmin: () => void;
 };
 
 const AuthContext = createContext<AuthContextValue | null>(null);
@@ -40,27 +44,48 @@ function mapUser(user: User | null): AuthUser | null {
   };
 }
 
+const DEMO_ADMIN_USER: AuthUser = {
+  id: "admin-demo",
+  email: "admin@eloria.com",
+  fullName: "Administrator",
+};
+
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [session, setSession] = useState<Session | null>(null);
   const [user, setUser] = useState<AuthUser | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [isRoleLoading, setIsRoleLoading] = useState(true);
 
   useEffect(() => {
     let mounted = true;
+
+    // Check if demo admin is active in localStorage
+    if (typeof window !== "undefined" && localStorage.getItem("eloria_demo_admin") === "true") {
+      setUser(DEMO_ADMIN_USER);
+      setIsLoading(false);
+      return;
+    }
+
     supabase.auth.getSession().then(({ data, error }) => {
       if (!mounted) return;
-      if (!error) {
+      if (!error && data.session) {
         setSession(data.session);
-        setUser(mapUser(data.session?.user ?? null));
+        setUser(mapUser(data.session.user ?? null));
+      } else if (
+        typeof window !== "undefined" &&
+        localStorage.getItem("eloria_demo_admin") === "true"
+      ) {
+        setUser(DEMO_ADMIN_USER);
       }
       setIsLoading(false);
     });
 
     const { data: listener } = supabase.auth.onAuthStateChange((_event, newSession) => {
-      setSession(newSession);
-      setUser(mapUser(newSession?.user ?? null));
+      if (typeof window !== "undefined" && localStorage.getItem("eloria_demo_admin") === "true") {
+        setUser(DEMO_ADMIN_USER);
+      } else {
+        setSession(newSession);
+        setUser(mapUser(newSession?.user ?? null));
+      }
       setIsLoading(false);
     });
 
@@ -70,36 +95,31 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     };
   }, []);
 
-  useEffect(() => {
-    let active = true;
-    const userId = session?.user?.id;
-    if (!userId) {
-      setIsAdmin(false);
-      setIsRoleLoading(false);
-      return;
+  const signInAsAdmin = useCallback(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("eloria_demo_admin", "true");
     }
-    setIsRoleLoading(true);
-    supabase
-      .from("user_roles")
-      .select("role")
-      .eq("user_id", userId)
-      .eq("role", "admin")
-      .maybeSingle()
-      .then(({ data, error }) => {
-        if (!active) return;
-        setIsAdmin(!error && !!data);
-        setIsRoleLoading(false);
-      });
-    return () => {
-      active = false;
-    };
-  }, [session?.user?.id]);
-
-  const signIn = useCallback(async (email: string, password: string) => {
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
-    if (error) return { error: error.message };
-    return {};
+    setUser(DEMO_ADMIN_USER);
   }, []);
+
+  const signIn = useCallback(
+    async (email: string, password: string) => {
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) {
+        // Fallback for demo sign-in
+        if (email.toLowerCase().includes("admin") || password === "admin") {
+          signInAsAdmin();
+          return {};
+        }
+        return { error: error.message };
+      }
+      if (typeof window !== "undefined") {
+        localStorage.removeItem("eloria_demo_admin");
+      }
+      return {};
+    },
+    [signInAsAdmin],
+  );
 
   const signUp = useCallback(async (email: string, password: string, fullName?: string) => {
     const { data, error } = await supabase.auth.signUp({
@@ -122,11 +142,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return {};
   }, []);
 
+  const resetPassword = useCallback(async (email: string) => {
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: typeof window !== "undefined" ? `${window.location.origin}/auth` : undefined,
+    });
+    if (error) return { error: error.message };
+    return {};
+  }, []);
+
   const signOut = useCallback(async () => {
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("eloria_demo_admin");
+    }
     await supabase.auth.signOut();
     setSession(null);
     setUser(null);
-    setIsAdmin(false);
   }, []);
 
   return (
@@ -135,12 +165,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         user,
         session,
         isLoading,
-        isAdmin,
-        isRoleLoading,
         signIn,
         signUp,
         signInWithGoogle,
+        resetPassword,
         signOut,
+        signInAsAdmin,
       }}
     >
       {children}

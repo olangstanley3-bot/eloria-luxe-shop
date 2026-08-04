@@ -48,12 +48,7 @@
             "category": {
               "description": "Category slug to filter by.",
               "type": "string",
-              "enum": [
-                "curtains",
-                "bedding",
-                "handbags",
-                "shoes"
-              ]
+              "enum": ["curtains", "bedding", "handbags", "shoes"]
             },
             "collection": {
               "description": "Collection name to filter by (e.g. 'Blackout', 'Sheer').",
@@ -72,12 +67,7 @@
             "tag": {
               "description": "Filter by product tag.",
               "type": "string",
-              "enum": [
-                "New",
-                "Bestseller",
-                "Limited",
-                "Sale"
-              ]
+              "enum": ["New", "Bestseller", "Limited", "Sale"]
             },
             "limit": {
               "description": "Max results to return (default 20).",
@@ -108,9 +98,7 @@
               "description": "Product id (e.g. 'curtain-navy-solid')."
             }
           },
-          "required": [
-            "id"
-          ]
+          "required": ["id"]
         },
         "outputSchema": null
       },

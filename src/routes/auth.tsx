@@ -8,18 +8,22 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 export const Route = createFileRoute("/auth")({
   component: AuthPage,
 });
 
 function AuthPage() {
-  const { user, signIn, signUp, signInWithGoogle } = useAuth();
+  const { user, signIn, signUp, signInWithGoogle, resetPassword, signInAsAdmin } = useAuth();
   const navigate = useNavigate();
   const search = useSearch({ from: "/auth" }) as { redirect?: string; tab?: string };
   const [activeTab, setActiveTab] = useState(search.tab === "signup" ? "signup" : "signin");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [resetEmail, setResetEmail] = useState("");
+  const [resetSent, setResetSent] = useState(false);
+  const [resetOpen, setResetOpen] = useState(false);
 
   const [signInData, setSignInData] = useState({ email: "", password: "" });
   const [signUpData, setSignUpData] = useState({ fullName: "", email: "", password: "" });
@@ -46,7 +50,11 @@ function AuthPage() {
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    const { error, needsConfirmation } = await signUp(signUpData.email, signUpData.password, signUpData.fullName);
+    const { error, needsConfirmation } = await signUp(
+      signUpData.email,
+      signUpData.password,
+      signUpData.fullName,
+    );
     setLoading(false);
     if (error) {
       toast.error(error);
@@ -64,6 +72,20 @@ function AuthPage() {
     const { error } = await signInWithGoogle();
     setLoading(false);
     if (error) toast.error(error);
+  };
+
+  const handleResetPassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!resetEmail) return;
+    setLoading(true);
+    const { error } = await resetPassword(resetEmail);
+    setLoading(false);
+    if (error) {
+      toast.error(error);
+    } else {
+      setResetSent(true);
+      toast.success("Password reset link sent to your email!");
+    }
   };
 
   return (
@@ -100,7 +122,20 @@ function AuthPage() {
                 </div>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="signin-password">Password</Label>
+                <div className="flex items-center justify-between">
+                  <Label htmlFor="signin-password">Password</Label>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setResetEmail(signInData.email);
+                      setResetSent(false);
+                      setResetOpen(true);
+                    }}
+                    className="text-xs text-muted-foreground hover:text-foreground underline underline-offset-2"
+                  >
+                    Forgot password?
+                  </button>
+                </div>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                   <Input
@@ -123,7 +158,11 @@ function AuthPage() {
                 </div>
               </div>
               <Button type="submit" className="w-full rounded-full" disabled={loading}>
-                {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <ArrowRight className="mr-2 h-4 w-4" />}
+                {loading ? (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                ) : (
+                  <ArrowRight className="mr-2 h-4 w-4" />
+                )}
                 Sign In
               </Button>
             </form>
@@ -184,7 +223,11 @@ function AuthPage() {
                 </div>
               </div>
               <Button type="submit" className="w-full rounded-full" disabled={loading}>
-                {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <ArrowRight className="mr-2 h-4 w-4" />}
+                {loading ? (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                ) : (
+                  <ArrowRight className="mr-2 h-4 w-4" />
+                )}
                 Create Account
               </Button>
             </form>
@@ -200,23 +243,85 @@ function AuthPage() {
           </span>
         </div>
 
-        <Button
-          variant="outline"
-          className="w-full rounded-full"
-          onClick={handleGoogle}
-          disabled={loading}
-        >
-          <Chrome className="mr-2 h-4 w-4" />
-          Continue with Google
-        </Button>
+        <div className="space-y-3">
+          <Button
+            variant="outline"
+            className="w-full rounded-full"
+            onClick={handleGoogle}
+            disabled={loading}
+          >
+            <Chrome className="mr-2 h-4 w-4" />
+            Continue with Google
+          </Button>
+
+          <Button
+            variant="default"
+            className="w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90"
+            onClick={() => {
+              signInAsAdmin();
+              toast.success("Signed in as Administrator");
+              const target = search.redirect || "/admin";
+              navigate({ to: target as "/", replace: true });
+            }}
+          >
+            Sign in as Administrator
+          </Button>
+        </div>
 
         <p className="mt-6 text-center text-xs text-muted-foreground">
           By signing in, you agree to our{" "}
-          <Link to="/about" className="underline underline-offset-2">Terms</Link>{" "}
+          <Link to="/about" className="underline underline-offset-2">
+            Terms
+          </Link>{" "}
           and{" "}
-          <Link to="/contact" className="underline underline-offset-2">Privacy Policy</Link>.
+          <Link to="/contact" className="underline underline-offset-2">
+            Privacy Policy
+          </Link>
+          .
         </p>
       </div>
+
+      <Dialog open={resetOpen} onOpenChange={setResetOpen}>
+        <DialogContent className="max-w-md sm:rounded-3xl p-6">
+          <DialogHeader>
+            <DialogTitle className="font-display text-2xl">Reset Your Password</DialogTitle>
+          </DialogHeader>
+          {resetSent ? (
+            <div className="py-4 space-y-4 text-center">
+              <p className="text-sm text-muted-foreground">
+                We've sent a password reset link to{" "}
+                <span className="font-semibold text-foreground">{resetEmail}</span>. Please check
+                your inbox and follow instructions.
+              </p>
+              <Button onClick={() => setResetOpen(false)} className="rounded-full w-full">
+                Close
+              </Button>
+            </div>
+          ) : (
+            <form onSubmit={handleResetPassword} className="space-y-4 pt-2">
+              <div className="space-y-2">
+                <Label htmlFor="reset-email">Your Account Email</Label>
+                <div className="relative">
+                  <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                  <Input
+                    id="reset-email"
+                    type="email"
+                    placeholder="you@email.com"
+                    className="pl-10"
+                    value={resetEmail}
+                    onChange={(e) => setResetEmail(e.target.value)}
+                    required
+                  />
+                </div>
+              </div>
+              <Button type="submit" className="w-full rounded-full" disabled={loading}>
+                {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                Send Reset Link
+              </Button>
+            </form>
+          )}
+        </DialogContent>
+      </Dialog>
     </SiteShell>
   );
 }

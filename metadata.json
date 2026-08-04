@@ -1,0 +1,6 @@
+{
+  "name": "Eloria Luxe Shop",
+  "description": "E-commerce store for luxury curtains, handbags, bedding, and shoes",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
